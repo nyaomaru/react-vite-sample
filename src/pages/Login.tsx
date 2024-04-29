@@ -1,18 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { SimpleTextField } from '@/components/atoms/SImplrTextField';
 
 import { useNavigate } from 'react-router-dom';
 
+import { axiosBase } from '@/plugins/axiosBase';
+
 function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+  const [data, setData] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axiosBase('/login');
+        setData(result.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <>
       <h1>Login page</h1>
+
+      <p>Login State: {data}</p>
 
       <div>
         <SimpleTextField
