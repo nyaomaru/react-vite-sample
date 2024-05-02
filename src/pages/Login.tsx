@@ -10,14 +10,15 @@ import { axiosBase } from '@/plugins/axiosBase';
 function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [data, setData] = useState(null);
+  const [data, setData] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const result = await axiosBase('/login');
-        setData(result.data);
+        const parseData = String(result.data);
+        setData(parseData);
       } catch (err) {
         console.log(err);
       }
@@ -25,6 +26,10 @@ function Login() {
 
     fetchData();
   }, []);
+
+  const handleSubmit = () => {
+    navigate('/');
+  };
 
   return (
     <>
@@ -49,10 +54,7 @@ function Login() {
         Input value: {userName} : {password}
       </p>
 
-      <SimpleButton
-        buttonName="Submit"
-        onClick={() => navigate('/')}
-      ></SimpleButton>
+      <SimpleButton buttonName="Submit" onClick={handleSubmit}></SimpleButton>
     </>
   );
 }
