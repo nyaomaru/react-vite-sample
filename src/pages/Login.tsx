@@ -1,41 +1,53 @@
-import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useState } from 'react';
 
 import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { SimpleTextField } from '@/components/atoms/SImplrTextField';
-
-import { useNavigate } from 'react-router-dom';
-
+import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { axiosBase } from '@/plugins/axiosBase';
+import { useLoginState } from '@/hooks/useLogin';
 
 function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [data, setData] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+
+  const loginState = useLoginState();
+
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axiosBase('/login');
-        const parseData = String(result.data);
-        setData(parseData);
-      } catch (err) {
-        console.log(err);
+  const handleSubmit = async () => {
+    try {
+      const result = await axiosBase.post('/login', {
+        username: userName,
+        password: password,
+      });
+      if (String(result.data) !== 'true') {
+        handleError(result.data);
+        return;
       }
-    };
-
-    fetchData();
-  }, []);
-
-  const handleSubmit = () => {
+    } catch (error) {
+      console.log(error);
+      handleError(String('Error'));
+      return;
+    }
     navigate('/');
+  };
+
+  const handleError = (message: string) => {
+    setErrorMessage(message);
+    setShowAlert(true);
   };
 
   return (
     <>
       <h1>Login page</h1>
 
-      <p>Login State: {data}</p>
+      <p>Login State: {loginState}</p>
+
+      <ErrorAlert errorMessage={errorMessage} isShow={showAlert} />
 
       <div>
         <SimpleTextField
