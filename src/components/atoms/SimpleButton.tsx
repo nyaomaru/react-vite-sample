@@ -1,16 +1,20 @@
 import Button from '@mui/material/Button';
 
 type SimpleButtonProps = {
-  onClick: (param: any) => void;
   buttonName: string;
+  buttonType?: 'button' | 'submit';
 };
 
-export const SimpleButton: React.FC<SimpleButtonProps> = ({
-  onClick,
-  buttonName,
-}) => {
+export const SimpleButton: React.FC<
+  SimpleButtonProps & React.ComponentPropsWithoutRef<'button'>
+> = ({ onClick, disabled, buttonName, buttonType = 'button' }) => {
   return (
-    <Button variant="outlined" onClick={onClick}>
+    <Button
+      variant="outlined"
+      onClick={onClick}
+      disabled={disabled}
+      type={buttonType}
+    >
       {buttonName}
     </Button>
   );

@@ -1,10 +1,12 @@
+import { forwardRef, ComponentPropsWithoutRef } from 'react';
 import TextField from '@mui/material/TextField';
 
-type SimpleTextFieldProps = {
-  onClick: (param: any) => void;
+type TextFieldProps = {
   id: string;
   label: string;
 };
+
+type SimpleTexFieldProps = ComponentPropsWithoutRef<'input'> & TextFieldProps;
 
 const simpleTextFieldStyle = {
   '& .MuiInputBase-input': {
@@ -15,18 +17,17 @@ const simpleTextFieldStyle = {
   },
 };
 
-export const SimpleTextField: React.FC<SimpleTextFieldProps> = ({
-  onClick,
-  id,
-  label,
-}) => {
+export const SimpleTextField = forwardRef<
+  HTMLInputElement,
+  SimpleTexFieldProps
+>(({ id, label, ...props }, ref) => {
   return (
     <TextField
       sx={simpleTextFieldStyle}
       id={id}
       label={label}
       variant="filled"
-      onChange={onClick}
+      inputRef={ref}
     />
   );
-};
+});
