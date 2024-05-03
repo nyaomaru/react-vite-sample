@@ -5,40 +5,38 @@ import { useState } from 'react';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { SimpleTextField } from '@/components/atoms/SImplrTextField';
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
-import { axiosBase } from '@/plugins/axiosBase';
-import { useLoginState } from '@/hooks/useLogin';
+
+import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';
 
 function Login() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const loginState = useLoginState();
 
   const navigate = useNavigate();
 
-  const handleSubmit = async () => {
-    try {
-      const result = await axiosBase.post('/login', {
-        username: userName,
-        password: password,
-      });
-      if (String(result.data) !== 'true') {
-        handleError(result.data);
-        return;
-      }
-    } catch (error) {
-      console.log(error);
-      handleError(String('Error'));
-      return;
-    }
-    navigate('/');
-  };
-
   const handleError = (message: string) => {
     setErrorMessage(message);
     setShowAlert(true);
+    setIsLoading(false);
+  };
+
+  const { mutateAsync } = useLoginSubmit(userName, password, handleError);
+
+  const handleSubmit = async () => {
+    setIsLoading(true);
+
+    try {
+      await mutateAsync();
+      navigate('/');
+    } catch (e) {
+      return;
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -53,12 +51,12 @@ function Login() {
         <SimpleTextField
           id={'user-name'}
           label={'user name'}
-          onClick={(e) => setUserName(e.target.value)}
+          onChange={(e) => setUserName(e.target.value)}
         />
         <SimpleTextField
           id={'password'}
           label={'password'}
-          onClick={(e) => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
 
@@ -66,7 +64,11 @@ function Login() {
         Input value: {userName} : {password}
       </p>
 
-      <SimpleButton buttonName="Submit" onClick={handleSubmit}></SimpleButton>
+      <SimpleButton
+        disabled={isLoading}
+        buttonName="Submit"
+        onClick={handleSubmit}
+      ></SimpleButton>
     </>
   );
 }
