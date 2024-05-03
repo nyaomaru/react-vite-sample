@@ -8,7 +8,7 @@ import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 
 import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';
 
-function Login() {
+const Login = () => {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -71,6 +71,6 @@ function Login() {
       ></SimpleButton>
     </>
   );
-}
+};
 
 export default Login;

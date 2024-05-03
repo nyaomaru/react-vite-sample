@@ -29,6 +29,11 @@ function App() {
         buttonName="Page to Login"
         onClick={() => navigate('/login')}
       ></SimpleButton>
+
+      <SimpleButton
+        buttonName="Page to Register"
+        onClick={() => navigate('/register')}
+      ></SimpleButton>
     </>
   );
 }

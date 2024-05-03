@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { axiosBase } from '@/plugins/axiosBase';
+import { LoginQueries } from '@/queries/login.queries';
 
 export const useLoginState = () => {
   const [state, setState] = useState('');
 
   const { data, isError, error } = useQuery({
-    queryKey: ['loginGet'],
-    queryFn: () => axiosBase('/login').then((res) => res.data),
+    ...LoginQueries.getLoginState(),
   });
 
   if (isError) {
@@ -38,7 +38,7 @@ export const useLoginSubmit = (
   return useMutation({
     mutationFn: () =>
       axiosBase
-        .post('/login/eee', {
+        .post('/login', {
           username: userName,
           password: password,
         })
