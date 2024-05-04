@@ -1,25 +1,27 @@
-import { zodResolver } from '@hookform/resolvers/zod';
-
 import { useForm, SubmitHandler } from 'react-hook-form';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 
-import { SimpleTextField } from '@/components/atoms/SImplrTextField';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
 
 import { TextFieldStyle } from './Register.css';
-import { registerFormSchema, RegisterFormSchema } from './schema';
+import { RegisterFormSchema } from './schema';
+import { RHFTextInput } from '@/components/molecules/RHFTextInput';
+
+const rules = {
+  required: { value: true, message: 'Must input' },
+  maxLength: { value: 5, message: `Max length is 5` },
+} as const;
 
 const Register = () => {
   const {
     control,
-    register,
     handleSubmit,
     formState: { errors },
   } = useForm<RegisterFormSchema>({
     mode: 'onSubmit',
-    defaultValues: undefined,
-    resolver: zodResolver(registerFormSchema),
+    defaultValues: { username: '', password: '' },
+    // resolver: zodResolver(registerFormSchema),
   });
   const onSubmit: SubmitHandler<RegisterFormSchema> = (data) =>
     console.log(data);
@@ -30,34 +32,29 @@ const Register = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={TextFieldStyle}>
-          <SimpleTextField
-            id={'user-name'}
-            label={'user name'}
-            {...register('username', { required: true })}
-          />
+          <RHFTextInput
+            name={'username'}
+            control={control}
+            rules={rules}
+          ></RHFTextInput>
         </div>
 
-        {errors.username && (
-          <ErrorAlert
-            errorMessage={'This username is required'}
-            isShow={true}
-          />
+        {/* <p>errors.username: {errors.username}</p> */}
+
+        {errors.username?.message && (
+          <ErrorAlert errorMessage={errors.username.message} isShow={true} />
         )}
 
         <div className={TextFieldStyle}>
-          <SimpleTextField
-            className={TextFieldStyle}
-            id={'password'}
-            label={'password'}
-            {...register('password', { required: true })}
-          />
+          <RHFTextInput
+            name={'password'}
+            control={control}
+            rules={rules}
+          ></RHFTextInput>
         </div>
 
-        {errors.password && (
-          <ErrorAlert
-            errorMessage={'This password is required'}
-            isShow={true}
-          />
+        {errors.password?.message && (
+          <ErrorAlert errorMessage={errors.password.message} isShow={true} />
         )}
 
         <SimpleButton buttonName="Submit" buttonType="submit"></SimpleButton>

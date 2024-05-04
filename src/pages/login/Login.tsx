@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import { SimpleButton } from '@/components/atoms/SimpleButton';
-import { SimpleTextField } from '@/components/atoms/SImplrTextField';
+import { SimpleTextField } from '@/components/atoms/SImpleTextField';
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 
 import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';

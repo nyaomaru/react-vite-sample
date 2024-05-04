@@ -12,7 +12,7 @@ const castToValOrNull = <T extends Parameters<typeof z.preprocess>[1]>(
   }, schema);
 
 export const registerFormSchema = z.object({
-  username: castToValOrNull(z.string().nullable()),
+  username: castToValOrNull(z.string()),
   password: castToValOrNull(z.string()),
 });
 
