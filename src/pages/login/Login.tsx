@@ -1,16 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import { SimpleButton } from '@/components/atoms/SimpleButton';
-import { SimpleTextField } from '@/components/atoms/SImpleTextField';
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
+import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 
 import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';
 
+import { loginSchema, LoginSchema } from './schema';
+import { TextFieldStyle } from './Login.css';
+
 const Login = () => {
-  const [userName, setUserName] = useState('');
-  const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -19,19 +21,29 @@ const Login = () => {
 
   const navigate = useNavigate();
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginSchema>({
+    mode: 'onSubmit',
+    defaultValues: { username: '', password: '' },
+    resolver: zodResolver(loginSchema),
+  });
+
   const handleError = (message: string) => {
     setErrorMessage(message);
     setShowAlert(true);
     setIsLoading(false);
   };
 
-  const { mutateAsync } = useLoginSubmit(userName, password, handleError);
+  const { mutateAsync } = useLoginSubmit(handleError);
 
-  const handleSubmit = async () => {
+  const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
     setIsLoading(true);
 
     try {
-      await mutateAsync();
+      await mutateAsync(data);
       navigate('/');
     } catch (e) {
       return;
@@ -47,28 +59,28 @@ const Login = () => {
 
       <ErrorAlert errorMessage={errorMessage} isShow={showAlert} />
 
-      <div>
-        <SimpleTextField
-          id={'user-name'}
-          label={'user name'}
-          onChange={(e) => setUserName(e.target.value)}
-        />
-        <SimpleTextField
-          id={'password'}
-          label={'password'}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className={TextFieldStyle}>
+          <RHFTextInput name={'username'} control={control} />
 
-      <p>
-        Input value: {userName} : {password}
-      </p>
+          {errors.username?.message && (
+            <ErrorAlert errorMessage={errors.username.message} isShow={true} />
+          )}
+        </div>
+        <div className={TextFieldStyle}>
+          <RHFTextInput name={'password'} control={control} />
 
-      <SimpleButton
-        disabled={isLoading}
-        buttonName="Submit"
-        onClick={handleSubmit}
-      ></SimpleButton>
+          {errors.password?.message && (
+            <ErrorAlert errorMessage={errors.password.message} isShow={true} />
+          )}
+        </div>
+
+        <SimpleButton
+          disabled={isLoading}
+          buttonName="Submit"
+          buttonType="submit"
+        ></SimpleButton>
+      </form>
     </>
   );
 };
