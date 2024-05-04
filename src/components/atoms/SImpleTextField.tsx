@@ -1,12 +1,12 @@
-import { forwardRef, ComponentPropsWithoutRef } from 'react';
 import TextField from '@mui/material/TextField';
 
 type TextFieldProps = {
   id: string;
   label: string;
+  isError?: boolean;
+  helperText?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
-
-type SimpleTexFieldProps = ComponentPropsWithoutRef<'input'> & TextFieldProps;
 
 const simpleTextFieldStyle = {
   '& .MuiInputBase-input': {
@@ -17,17 +17,24 @@ const simpleTextFieldStyle = {
   },
 };
 
-export const SimpleTextField = forwardRef<
-  HTMLInputElement,
-  SimpleTexFieldProps
->(({ id, label, ...props }, ref) => {
+export const SimpleTextField = ({
+  id,
+  label,
+  isError,
+  helperText,
+  onChange,
+  ...field
+}: TextFieldProps) => {
   return (
     <TextField
       sx={simpleTextFieldStyle}
       id={id}
       label={label}
       variant="filled"
-      inputRef={ref}
+      error={isError}
+      helperText={helperText}
+      onChange={onChange}
+      {...field}
     />
   );
-});
+};

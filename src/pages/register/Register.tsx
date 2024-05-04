@@ -1,66 +1,113 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { useForm, SubmitHandler } from 'react-hook-form';
-
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
-
-import { SimpleTextField } from '@/components/atoms/SImplrTextField';
+import { SuccessAlert } from '@/components/atoms/SuccessAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
+import { RHFTextInput } from '@/components/molecules/RHFTextInput';
+import { RHFSelect } from '@/components/molecules/RHFSelect';
+import { RHFRadio } from '@/components/molecules/RHFRadio';
 
-import { TextFieldStyle } from './Register.css';
+import { BaseFieldStyle, FieldStyle } from './Register.css';
 import { registerFormSchema, RegisterFormSchema } from './schema';
 
+import { useRegisterSubmit } from '@/hooks/useRegister';
+
 const Register = () => {
+  const [errorMessage, setErrorMessage] = useState('');
+  const [showAlert, setShowAlert] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const navigate = useNavigate();
+
   const {
     control,
-    register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<RegisterFormSchema>({
     mode: 'onSubmit',
-    defaultValues: undefined,
+    defaultValues: { username: '', password: '', city: 1, option: '' },
     resolver: zodResolver(registerFormSchema),
   });
-  const onSubmit: SubmitHandler<RegisterFormSchema> = (data) =>
-    console.log(data);
+
+  const handleError = (message: string) => {
+    setErrorMessage(message);
+    setShowAlert(true);
+    setIsLoading(false);
+  };
+
+  const { mutateAsync } = useRegisterSubmit(handleError);
+
+  const onSubmit: SubmitHandler<RegisterFormSchema> = async (data) => {
+    setShowAlert(false);
+    setIsLoading(true);
+
+    try {
+      await mutateAsync(data);
+    } catch (e) {
+      return;
+    }
+    setIsLoading(false);
+    setShowSuccess(true);
+    reset();
+  };
 
   return (
     <>
       <h1>Register page</h1>
 
+      <ErrorAlert errorMessage={errorMessage} isShow={showAlert} />
+
+      <SuccessAlert
+        successMessage={'Success to register!!'}
+        isShow={showSuccess}
+      />
+
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={TextFieldStyle}>
-          <SimpleTextField
-            id={'user-name'}
-            label={'user name'}
-            {...register('username', { required: true })}
-          />
+        <div className={FieldStyle}>
+          <RHFTextInput name={'username'} control={control} />
+
+          {errors.username?.message && (
+            <ErrorAlert errorMessage={errors.username.message} isShow={true} />
+          )}
         </div>
 
-        {errors.username && (
-          <ErrorAlert
-            errorMessage={'This username is required'}
-            isShow={true}
-          />
-        )}
+        <div className={FieldStyle}>
+          <RHFTextInput name={'password'} control={control} />
 
-        <div className={TextFieldStyle}>
-          <SimpleTextField
-            className={TextFieldStyle}
-            id={'password'}
-            label={'password'}
-            {...register('password', { required: true })}
-          />
+          {errors.password?.message && (
+            <ErrorAlert errorMessage={errors.password.message} isShow={true} />
+          )}
         </div>
 
-        {errors.password && (
-          <ErrorAlert
-            errorMessage={'This password is required'}
-            isShow={true}
-          />
-        )}
+        <div className={FieldStyle}>
+          <RHFSelect name={'city'} control={control} />
 
-        <SimpleButton buttonName="Submit" buttonType="submit"></SimpleButton>
+          {errors.city?.message && (
+            <ErrorAlert errorMessage={errors.city.message} isShow={true} />
+          )}
+        </div>
+
+        <div className={FieldStyle}>
+          <RHFRadio name={'option'} control={control} />
+
+          {errors.option?.message && (
+            <ErrorAlert errorMessage={errors.option.message} isShow={true} />
+          )}
+        </div>
+
+        <div className={BaseFieldStyle}>
+          <SimpleButton
+            disabled={isLoading}
+            buttonName="Submit"
+            buttonType="submit"
+            onClick={() => setShowSuccess(false)}
+          ></SimpleButton>
+        </div>
       </form>
     </>
   );
