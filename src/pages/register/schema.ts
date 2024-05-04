@@ -12,8 +12,10 @@ const castToValOrNull = <T extends Parameters<typeof z.preprocess>[1]>(
   }, schema);
 
 export const registerFormSchema = z.object({
-  username: castToValOrNull(z.string()),
-  password: castToValOrNull(z.string()),
+  username: z.string().min(1, 'Must input').max(8, 'Too long username'),
+  password: castToValOrNull(z.string().max(8, 'Too long username')),
+  city: z.number(),
+  option: z.string().nullable(),
 });
 
 export type RegisterFormSchema = z.infer<typeof registerFormSchema>;

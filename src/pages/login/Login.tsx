@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { SimpleButton } from '@/components/atoms/SimpleButton';
@@ -40,6 +40,7 @@ const Login = () => {
   const { mutateAsync } = useLoginSubmit(handleError);
 
   const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
+    setShowAlert(false);
     setIsLoading(true);
 
     try {

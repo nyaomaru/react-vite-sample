@@ -10,19 +10,10 @@ import TextField from '@mui/material/TextField';
 
 import { RHFTextInputStyle } from './RHFTextInput.css';
 
-const TextFieldStyle = {
-  '& .MuiInputBase-input': {
-    color: '#FFFFFF',
-  },
-  '& label': {
-    color: '#FFFFFF !important',
-  },
-};
-
 type RHFTextInputProps<T extends FieldValues> = {
   control: Control<T, object>;
   name: Path<T>;
-  rules: RegisterOptions<T>;
+  rules?: RegisterOptions<T>;
 };
 
 export const RHFTextInput = <T extends FieldValues>({
@@ -39,7 +30,7 @@ export const RHFTextInput = <T extends FieldValues>({
         render={({ field, fieldState }) => (
           <TextField
             {...field}
-            sx={TextFieldStyle}
+            fullWidth
             id={name}
             label={name}
             error={fieldState.invalid}
