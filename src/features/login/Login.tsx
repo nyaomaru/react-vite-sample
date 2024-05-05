@@ -9,10 +9,12 @@ import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 
 import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';
 
-import { loginSchema, LoginSchema } from './schema';
+import { loginSchema, type LoginSchema } from './schema';
 import { TextFieldStyle } from './Login.css';
 
-const Login = () => {
+import { PATH } from '@/pages/router';
+
+export const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +47,7 @@ const Login = () => {
 
     try {
       await mutateAsync(data);
-      navigate('/');
+      navigate(PATH.TOP);
     } catch (e) {
       return;
     }
@@ -85,5 +87,3 @@ const Login = () => {
     </>
   );
 };
-
-export default Login;

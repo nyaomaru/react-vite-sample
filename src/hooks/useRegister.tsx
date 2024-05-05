@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
+
 import { axiosBase } from '@/plugins/axiosBase';
-import { RegisterFormSchema } from '@/pages/register/schema';
+import { RegisterFormSchema } from '@/features/register/schema';
 
 export const useRegisterSubmit = (handleError: (message: string) => void) => {
   return useMutation({
