@@ -11,11 +11,12 @@ import { RHFSelect } from '@/components/molecules/RHFSelect';
 import { RHFRadio } from '@/components/molecules/RHFRadio';
 
 import { BaseFieldStyle, FieldStyle } from './Register.css';
-import { registerFormSchema, RegisterFormSchema } from './schema';
+import { registerFormSchema, type RegisterFormSchema } from './schema';
 
 import { useRegisterSubmit } from '@/hooks/useRegister';
+import { PATH } from '@/pages/router';
 
-const Register = () => {
+export const Register = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -108,9 +109,17 @@ const Register = () => {
             onClick={() => setShowSuccess(false)}
           ></SimpleButton>
         </div>
+
+        <div className={BaseFieldStyle}>
+          <SimpleButton
+            disabled={isLoading}
+            buttonName="Return"
+            buttonType="button"
+            color="secondary"
+            onClick={() => navigate(PATH.TOP)}
+          ></SimpleButton>
+        </div>
       </form>
     </>
   );
 };
-
-export default Register;

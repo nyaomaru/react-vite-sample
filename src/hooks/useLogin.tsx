@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useQuery, useMutation } from '@tanstack/react-query';
+
 import { axiosBase } from '@/plugins/axiosBase';
 import { LoginQueries } from '@/queries/login.queries';
-
-import { LoginSchema } from '@/pages/login/schema';
+import { LoginSchema } from '@/features/login/schema';
 
 export const useLoginState = () => {
   const [state, setState] = useState('');
