@@ -1,10 +1,5 @@
-import {
-  Path,
-  Control,
-  Controller,
-  FieldValues,
-  RegisterOptions,
-} from 'react-hook-form';
+import type { Path, Control, FieldValues } from 'react-hook-form';
+import { Controller, type RegisterOptions } from 'react-hook-form';
 
 import TextField from '@mui/material/TextField';
 
