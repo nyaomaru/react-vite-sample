@@ -1,9 +1,11 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 import { axiosBase } from '@/plugins/axiosBase';
 
+import { PATH } from '@/pages/router/const';
+
 export const LoginQueries = createQueryKeys('createQueryKeys', {
   getLoginState: () => ({
     queryKey: ['getLoginState'],
-    queryFn: () => axiosBase('/login').then((res) => res.data),
+    queryFn: () => axiosBase(PATH.LOGIN).then((res) => res.data),
   }),
 });

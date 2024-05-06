@@ -2,7 +2,7 @@ import Alert from '@mui/material/Alert';
 
 type ErrorAlertProps = {
   errorMessage: string;
-  isShow: boolean;
+  isShow?: boolean;
 };
 
 export const ErrorAlert: React.FC<ErrorAlertProps> = ({

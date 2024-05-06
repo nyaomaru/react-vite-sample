@@ -41,6 +41,13 @@ export const Top = () => {
           onClick={() => navigate(PATH.REGISTER)}
         ></SimpleButton>
       </div>
+      <div className={ButtonStyle}>
+        <SimpleButton
+          color="info"
+          buttonName="Page to Customer"
+          onClick={() => navigate(PATH.CUSTOMER)}
+        ></SimpleButton>
+      </div>
     </>
   );
 };

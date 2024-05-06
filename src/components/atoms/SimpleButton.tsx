@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 type SimpleButtonProps = {
   buttonName: string;
   buttonType?: 'button' | 'submit';
-  color?: 'primary' | 'secondary';
+  color?: 'primary' | 'secondary' | 'info';
 };
 
 export const SimpleButton: React.FC<

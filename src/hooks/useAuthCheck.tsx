@@ -10,7 +10,6 @@ export const useAuthCheck = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(location.pathname);
     if (location.pathname !== PATH.LOGIN) {
       if (authStore.username === '' || authStore.password === '') {
         navigate(PATH.LOGIN);
