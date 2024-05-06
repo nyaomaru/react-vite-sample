@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { useRegisterSubmit } from '@/hooks/useRegister';
+import { useAuthCheck } from '@/hooks/useAuthCheck';
+import { PATH } from '@/pages/router/const';
+
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SuccessAlert } from '@/components/atoms/SuccessAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
@@ -10,13 +14,12 @@ import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 import { RHFSelect } from '@/components/molecules/RHFSelect';
 import { RHFRadio } from '@/components/molecules/RHFRadio';
 
-import { BaseFieldStyle, FieldStyle } from './Register.css';
 import { registerFormSchema, type RegisterFormSchema } from './schema';
 
-import { useRegisterSubmit } from '@/hooks/useRegister';
-import { PATH } from '@/pages/router';
+import { BaseFieldStyle, FieldStyle } from './Register.css';
 
 export const Register = () => {
+  useAuthCheck();
   const [errorMessage, setErrorMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);

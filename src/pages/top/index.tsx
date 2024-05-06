@@ -1,7 +1,7 @@
-import { Register } from '@/features/register/Register';
+import { Top } from '@/features/top/Top';
 
 const Page = () => {
-  return <Register />;
+  return <Top />;
 };
 
 export default Page;

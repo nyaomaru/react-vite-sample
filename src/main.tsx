@@ -1,11 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { useRouter } from '@/pages/router';
 import { store } from '@/app/store';
+import { CustomRouteProvider } from '@/pages/router/CustomRouteProvider';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -20,8 +19,6 @@ const darkTheme = createTheme({
 
 const queryClient = new QueryClient();
 
-const router = useRouter();
-
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -29,7 +26,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <CssBaseline />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
+          <CustomRouteProvider />
         </QueryClientProvider>
       </Provider>
     </ThemeProvider>

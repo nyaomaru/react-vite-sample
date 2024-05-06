@@ -5,6 +5,8 @@ import { axiosBase } from '@/plugins/axiosBase';
 import { LoginQueries } from '@/queries/login.queries';
 import type { LoginSchema } from '@/features/login/schema';
 
+import { PATH } from '@/pages/router/const';
+
 export const useLoginState = () => {
   const [state, setState] = useState('');
 
@@ -36,7 +38,7 @@ export const useLoginSubmit = (handleError: (message: string) => void) => {
   return useMutation({
     mutationFn: (req: LoginSchema) =>
       axiosBase
-        .post('/login', {
+        .post(PATH.LOGIN, {
           username: req.username,
           password: req.password,
         })
