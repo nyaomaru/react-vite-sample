@@ -7,17 +7,21 @@ import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 
+import { useAppDispatch } from '@/app/hooks';
 import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';
 
 import { loginSchema, type LoginSchema } from './schema';
 import { TextFieldStyle } from './Login.css';
 
-import { PATH } from '@/pages/router';
+import { PATH } from '@/pages/router/const';
+import { register } from '@/features/auth/auth';
 
 export const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+
+  const dispatch = useAppDispatch();
 
   const loginState = useLoginState();
 
@@ -52,6 +56,7 @@ export const Login = () => {
       return;
     }
     setIsLoading(false);
+    dispatch(register(data));
   };
 
   return (
