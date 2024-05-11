@@ -4,4 +4,5 @@ export const PATH = {
   REGISTER: '/register',
   FORM: '/form',
   CUSTOMER: '/customer',
+  CUSTOMER_DETAIL: '/customer/:id',
 } as const;
