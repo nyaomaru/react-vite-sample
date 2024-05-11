@@ -4,6 +4,7 @@ import Top from '@/pages/top';
 import Login from '@/pages/login';
 import Register from '@/pages/register';
 import Customer from '@/pages/customer';
+import CustomerDetail from '@/pages/customerDetail';
 
 import { PATH } from './const';
 
@@ -24,5 +25,9 @@ export const useRouter = () =>
     {
       path: PATH.CUSTOMER,
       element: <Customer />,
+    },
+    {
+      path: PATH.CUSTOMER_DETAIL,
+      element: <CustomerDetail />,
     },
   ]);

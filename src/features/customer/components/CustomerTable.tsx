@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -5,6 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+
+import { PATH } from '@/pages/router/const';
 
 import type { CustomerListSchema } from '@/features/customer/schema';
 
@@ -32,7 +36,9 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell align="right">{row.id}</TableCell>
+                <TableCell align="right">
+                  <Link to={PATH.CUSTOMER + `/${row.id}`}>{row.id}</Link>
+                </TableCell>
               </TableRow>
             ))}
         </TableBody>
