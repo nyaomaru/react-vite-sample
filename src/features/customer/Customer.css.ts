@@ -1,7 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
-export const TextFieldStyle = style({
-  display: 'block',
+export const CardContentStyle = style({
+  textAlign: 'left',
 });
 
 export const ButtonStyle = style({

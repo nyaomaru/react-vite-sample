@@ -11,7 +11,7 @@ import { useAppDispatch } from '@/app/hooks';
 import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';
 
 import { loginSchema, type LoginSchema } from './schema';
-import { TextFieldStyle } from './Login.css';
+import { TextFieldStyle, ButtonStyle } from './Login.css';
 
 import { PATH } from '@/pages/router/const';
 import { register } from '@/features/auth/auth';
@@ -83,11 +83,13 @@ export const Login = () => {
           )}
         </div>
 
-        <SimpleButton
-          disabled={isLoading}
-          buttonName="Submit"
-          buttonType="submit"
-        ></SimpleButton>
+        <div className={ButtonStyle}>
+          <SimpleButton
+            disabled={isLoading}
+            buttonName="Submit"
+            buttonType="submit"
+          ></SimpleButton>
+        </div>
       </form>
     </>
   );

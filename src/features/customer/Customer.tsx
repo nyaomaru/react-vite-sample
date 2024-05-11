@@ -7,6 +7,8 @@ import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { CustomerQueries } from '@/queries/customer.queries';
 import { PATH } from '@/pages/router/const';
 
+import { ButtonStyle } from './Customer.css';
+
 import { CustomerTable } from './components/CustomerTable';
 
 export const Customer = () => {
@@ -23,12 +25,15 @@ export const Customer = () => {
       <h1>Customer page</h1>
       {isError && <ErrorAlert errorMessage={error.message} />}
       {data !== undefined && <CustomerTable data={data} />}
-      <SimpleButton
-        buttonName="Return"
-        buttonType="button"
-        color="secondary"
-        onClick={() => navigate(PATH.TOP)}
-      ></SimpleButton>
+
+      <div className={ButtonStyle}>
+        <SimpleButton
+          buttonName="Return"
+          buttonType="button"
+          color="secondary"
+          onClick={() => navigate(PATH.TOP)}
+        ></SimpleButton>
+      </div>
     </>
   );
 };
