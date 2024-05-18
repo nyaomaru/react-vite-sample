@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { CardContentStyle } from '../Customer.css';
 
-import { useCustomerSubmit } from '@/hooks/useCusetomer';
+import { useCustomerSubmit } from '@/hooks/useCustomer';
 
 import { customerDetailSchema } from '../schema';
 import type { CustomerDetailSchema } from '../schema';
