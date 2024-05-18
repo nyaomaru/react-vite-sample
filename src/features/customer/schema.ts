@@ -10,7 +10,7 @@ export const customerListSchema = z
 export const customerDetailSchema = z.object({
   id: z.string(),
   name: z.string(),
-  city: z.string(),
+  city: z.number(),
   favorite: z.string(),
 });
 
