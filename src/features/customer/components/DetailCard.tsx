@@ -2,9 +2,9 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 
-import { CardContentStyle } from './Customer.css';
+import { CardContentStyle } from '../Customer.css';
 
-import type { CustomerDetailSchema } from './schema';
+import type { CustomerDetailSchema } from '../schema';
 
 type DetailCardProps = {
   data: CustomerDetailSchema;

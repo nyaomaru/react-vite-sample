@@ -9,9 +9,9 @@ import { PATH } from '@/pages/router/const';
 
 import { ButtonStyle } from './Customer.css';
 
-import { DetailCard } from './components/DetailCard';
+import { EditForm } from './components/EditForm';
 
-export const CustomerDetail = () => {
+export const CustomerEdit = () => {
   useAuthCheck();
 
   const { id } = useParams();
@@ -23,19 +23,10 @@ export const CustomerDetail = () => {
 
   return (
     <>
-      <h1>Customer detail page</h1>
+      <h1>Customer edit page</h1>
       <h2>ID: {id}</h2>
       {isError && <ErrorAlert errorMessage={error.message} />}
-      {data !== undefined && <DetailCard data={data} />}
-
-      <div className={ButtonStyle}>
-        <SimpleButton
-          buttonName="Edit"
-          buttonType="button"
-          color="primary"
-          onClick={() => navigate(PATH.CUSTOMER_EDIT.replace(':id', id ?? ''))}
-        ></SimpleButton>
-      </div>
+      {data !== undefined && <EditForm id={id ?? ''} data={data} />}
 
       <div className={ButtonStyle}>
         <SimpleButton
