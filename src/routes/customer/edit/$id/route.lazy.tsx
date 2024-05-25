@@ -1,20 +1,23 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { createLazyFileRoute, useNavigate } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { CustomerDetailQueries } from '@/queries/customer.queries';
-import { PATH } from '@/pages/router/const';
+import { PATH } from '@/constant/routes';
 
-import { ButtonStyle } from './Customer.css';
+import { ButtonStyle } from '@/features/customer/Customer.css';
+import { EditForm } from '@/features/customer/components/EditForm';
 
-import { EditForm } from './components/EditForm';
+export const Route = createLazyFileRoute('/customer/edit/$id')({
+  component: CustomerEdit,
+});
 
-export const CustomerEdit = () => {
+function CustomerEdit() {
   useAuthCheck();
 
-  const { id } = useParams();
+  const { id } = Route.useParams();
   const navigate = useNavigate();
 
   const { data, isError, error } = useQuery({
@@ -30,12 +33,12 @@ export const CustomerEdit = () => {
 
       <div className={ButtonStyle}>
         <SimpleButton
-          buttonName="Return"
-          buttonType="button"
-          color="secondary"
-          onClick={() => navigate(PATH.CUSTOMER)}
+          buttonName='Return'
+          buttonType='button'
+          color='secondary'
+          onClick={() => navigate({ to: PATH.CUSTOMER })}
         ></SimpleButton>
       </div>
     </>
   );
-};
+}

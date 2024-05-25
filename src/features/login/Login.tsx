@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useNavigate } from '@tanstack/react-router';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { SimpleButton } from '@/components/atoms/SimpleButton';
@@ -13,7 +13,7 @@ import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';
 import { loginSchema, type LoginSchema } from './schema';
 import { TextFieldStyle, ButtonStyle } from './Login.css';
 
-import { PATH } from '@/pages/router/const';
+import { PATH } from '@/routes/__root';
 import { register } from '@/features/auth/auth';
 
 export const Login = () => {
@@ -51,7 +51,7 @@ export const Login = () => {
 
     try {
       await mutateAsync(data);
-      navigate(PATH.TOP);
+      navigate({ to: PATH.TOP });
     } catch (e) {
       return;
     }
@@ -71,24 +71,16 @@ export const Login = () => {
         <div className={TextFieldStyle}>
           <RHFTextInput name={'username'} control={control} />
 
-          {errors.username?.message && (
-            <ErrorAlert errorMessage={errors.username.message} isShow={true} />
-          )}
+          {errors.username?.message && <ErrorAlert errorMessage={errors.username.message} isShow={true} />}
         </div>
         <div className={TextFieldStyle}>
           <RHFTextInput name={'password'} control={control} />
 
-          {errors.password?.message && (
-            <ErrorAlert errorMessage={errors.password.message} isShow={true} />
-          )}
+          {errors.password?.message && <ErrorAlert errorMessage={errors.password.message} isShow={true} />}
         </div>
 
         <div className={ButtonStyle}>
-          <SimpleButton
-            disabled={isLoading}
-            buttonName="Submit"
-            buttonType="submit"
-          ></SimpleButton>
+          <SimpleButton disabled={isLoading} buttonName='Submit' buttonType='submit'></SimpleButton>
         </div>
       </form>
     </>

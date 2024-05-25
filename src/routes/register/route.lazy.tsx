@@ -1,11 +1,11 @@
+import { createLazyFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useRegisterSubmit } from '@/hooks/useRegister';
 import { useAuthCheck } from '@/hooks/useAuthCheck';
-import { PATH } from '@/routes/__root';
+import { PATH } from '@/constant/routes';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SuccessAlert } from '@/components/atoms/SuccessAlert';
@@ -14,11 +14,14 @@ import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 import { RHFSelect } from '@/components/molecules/RHFSelect';
 import { RHFRadio } from '@/components/molecules/RHFRadio';
 
-import { registerFormSchema, type RegisterFormSchema } from './schema';
+import { registerFormSchema, type RegisterFormSchema } from '@/features/register/schema';
+import { BaseFieldStyle, FieldStyle } from '@/features/register/Register.css';
 
-import { BaseFieldStyle, FieldStyle } from './Register.css';
+export const Route = createLazyFileRoute('/register')({
+  component: Register,
+});
 
-export const Register = () => {
+function Register() {
   useAuthCheck();
   const [errorMessage, setErrorMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
@@ -108,10 +111,10 @@ export const Register = () => {
             buttonName='Return'
             buttonType='button'
             color='secondary'
-            onClick={() => navigate(PATH.TOP)}
+            onClick={() => navigate({ to: PATH.TOP })}
           ></SimpleButton>
         </div>
       </form>
     </>
   );
-};
+}

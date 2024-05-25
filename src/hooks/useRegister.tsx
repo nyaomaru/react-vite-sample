@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { axiosBase } from '@/plugins/axiosBase';
 import type { RegisterFormSchema } from '@/features/register/schema';
 
-import { PATH } from '@/pages/router/const';
+import { PATH } from '@/constant/routes';
 
 export const useRegisterSubmit = (handleError: (message: string) => void) => {
   return useMutation({

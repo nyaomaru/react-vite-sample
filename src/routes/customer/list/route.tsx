@@ -1,19 +1,19 @@
-import { useNavigate } from 'react-router-dom';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useQuery } from '@tanstack/react-query';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
-import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { CustomerQueries } from '@/queries/customer.queries';
-import { PATH } from '@/pages/router/const';
+import { PATH } from '@/constant/routes';
 
-import { ButtonStyle } from './Customer.css';
+import { ButtonStyle } from '@/features/customer/Customer.css';
+import { CustomerTable } from '@/features/customer/components/CustomerTable';
 
-import { CustomerTable } from './components/CustomerTable';
+export const Route = createFileRoute('/customer/list')({
+  component: Index,
+});
 
-export const Customer = () => {
-  useAuthCheck();
-
+function Index() {
   const navigate = useNavigate();
 
   const { data, isError, error } = useQuery({
@@ -22,18 +22,17 @@ export const Customer = () => {
 
   return (
     <>
-      <h1>Customer page</h1>
       {isError && <ErrorAlert errorMessage={error.message} />}
       {data !== undefined && <CustomerTable data={data} />}
 
       <div className={ButtonStyle}>
         <SimpleButton
-          buttonName="Return"
-          buttonType="button"
-          color="secondary"
-          onClick={() => navigate(PATH.TOP)}
+          buttonName='Return'
+          buttonType='button'
+          color='secondary'
+          onClick={() => navigate({ to: PATH.CUSTOMER })}
         ></SimpleButton>
       </div>
     </>
   );
-};
+}
