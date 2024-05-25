@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from '@tanstack/react-router';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 
 import { useCustomerDelete } from '@/hooks/useCustomer';
 
-import { PATH } from '@/pages/router/const';
+import { PATH } from '@/routes/__root';
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SuccessAlert } from '@/components/atoms/SuccessAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
@@ -65,38 +65,34 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
     <>
       <ErrorAlert errorMessage={errorMessage} isShow={showAlert} />
 
-      <SuccessAlert
-        successMessage={'Success to Delete!!'}
-        isShow={showSuccess}
-      />
+      <SuccessAlert successMessage={'Success to Delete!!'} isShow={showSuccess} />
 
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 650 }} aria-label="sticky table" stickyHeader>
+        <Table sx={{ minWidth: 650 }} aria-label='sticky table' stickyHeader>
           <TableHead>
             <TableRow>
               <TableCell>Name</TableCell>
-              <TableCell align="right">ID</TableCell>
-              <TableCell align="right">Delete</TableCell>
+              <TableCell align='right'>ID</TableCell>
+              <TableCell align='right'>Delete</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {data !== undefined &&
               data.map((row) => (
-                <TableRow
-                  key={row.name}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <TableCell component="th" scope="row">
+                <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell component='th' scope='row'>
                     {row.name}
                   </TableCell>
-                  <TableCell align="right">
-                    <Link to={PATH.CUSTOMER + `/${row.id}`}>{row.id}</Link>
+                  <TableCell align='right'>
+                    <Link to={PATH.CUSTOMER_DETAIL} params={{ id: row.id }}>
+                      {row.id}
+                    </Link>
                   </TableCell>
-                  <TableCell align="right">
+                  <TableCell align='right'>
                     <SimpleButton
                       buttonName={'Delete'}
-                      buttonType="submit"
-                      color="error"
+                      buttonType='submit'
+                      color='error'
                       onClick={() => handleOpen(row.id)}
                     >
                       {row.id}

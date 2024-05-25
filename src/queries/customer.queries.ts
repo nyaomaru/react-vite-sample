@@ -1,11 +1,8 @@
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 import { axiosBase } from '@/plugins/axiosBase';
 
-import { PATH } from '@/pages/router/const';
-import type {
-  ResponseCustomerListSchema,
-  CustomerDetailSchema,
-} from '@/features/customer/schema';
+import { PATH } from '@/constant/routes';
+import type { ResponseCustomerListSchema, CustomerDetailSchema } from '@/features/customer/schema';
 
 export const CustomerQueries = createQueryKeys('customer', {
   getCustomerList: () => ({

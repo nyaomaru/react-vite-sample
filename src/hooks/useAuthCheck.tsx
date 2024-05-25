@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from '@tanstack/react-router';
 import { useAppSelector } from '@/app/hooks';
 
-import { PATH } from '@/pages/router/const';
+import { PATH } from '@/constant/routes';
 
 export const useAuthCheck = () => {
   const location = useLocation();
@@ -12,7 +12,7 @@ export const useAuthCheck = () => {
   useEffect(() => {
     if (location.pathname !== PATH.LOGIN) {
       if (authStore.username === '' || authStore.password === '') {
-        navigate(PATH.LOGIN);
+        navigate({ to: PATH.LOGIN });
       }
     }
   }, [location]);

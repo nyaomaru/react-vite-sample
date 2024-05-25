@@ -2,9 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { RouterProvider, createRouter } from '@tanstack/react-router';
 
+// Import the generated route tree
+import { routeTree } from './routeTree.gen';
+
+// Create a new router instance
+const router = createRouter({ routeTree });
+
+// Register the router instance for type safety
+declare module '@tanstack/react-router' {
+  type Register = {
+    router: typeof router;
+  };
+}
 import { store } from '@/app/store';
-import { CustomRouteProvider } from '@/pages/router/CustomRouteProvider';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -26,9 +38,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <CssBaseline />
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <CustomRouteProvider />
+          <RouterProvider router={router} />
         </QueryClientProvider>
       </Provider>
     </ThemeProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
