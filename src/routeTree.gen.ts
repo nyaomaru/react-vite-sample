@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as CustomerRouteImport } from './routes/customer/route'
 import { Route as CustomerListRouteImport } from './routes/customer/list/route'
+import { Route as CustomerEditIdRouteImport } from './routes/customer/edit/$id/route'
 import { Route as CustomerDetailIdRouteImport } from './routes/customer/detail/$id/route'
 
 // Create Virtual Routes
@@ -22,7 +23,6 @@ import { Route as CustomerDetailIdRouteImport } from './routes/customer/detail/$
 const LoginLazyImport = createFileRoute('/login')()
 const RegisterRouteLazyImport = createFileRoute('/register')()
 const IndexLazyImport = createFileRoute('/')()
-const CustomerEditIdRouteLazyImport = createFileRoute('/customer/edit/$id')()
 
 // Create/Update Routes
 
@@ -53,12 +53,10 @@ const CustomerListRouteRoute = CustomerListRouteImport.update({
   getParentRoute: () => CustomerRouteRoute,
 } as any)
 
-const CustomerEditIdRouteLazyRoute = CustomerEditIdRouteLazyImport.update({
+const CustomerEditIdRouteRoute = CustomerEditIdRouteImport.update({
   path: '/edit/$id',
   getParentRoute: () => CustomerRouteRoute,
-} as any).lazy(() =>
-  import('./routes/customer/edit/$id/route.lazy').then((d) => d.Route),
-)
+} as any)
 
 const CustomerDetailIdRouteRoute = CustomerDetailIdRouteImport.update({
   path: '/detail/$id',
@@ -115,7 +113,7 @@ declare module '@tanstack/react-router' {
       id: '/customer/edit/$id'
       path: '/edit/$id'
       fullPath: '/customer/edit/$id'
-      preLoaderRoute: typeof CustomerEditIdRouteLazyImport
+      preLoaderRoute: typeof CustomerEditIdRouteImport
       parentRoute: typeof CustomerRouteImport
     }
   }
@@ -128,7 +126,7 @@ export const routeTree = rootRoute.addChildren({
   CustomerRouteRoute: CustomerRouteRoute.addChildren({
     CustomerListRouteRoute,
     CustomerDetailIdRouteRoute,
-    CustomerEditIdRouteLazyRoute,
+    CustomerEditIdRouteRoute,
   }),
   RegisterRouteLazyRoute,
   LoginLazyRoute,
@@ -174,7 +172,7 @@ export const routeTree = rootRoute.addChildren({
       "parent": "/customer"
     },
     "/customer/edit/$id": {
-      "filePath": "customer/edit/$id/route.lazy.tsx",
+      "filePath": "customer/edit/$id/route.tsx",
       "parent": "/customer"
     }
   }

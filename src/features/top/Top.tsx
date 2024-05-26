@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 
 import { useAppSelector } from '@/app/hooks';
-import { PATH } from '@/routes/__root';
+import { PATH } from '@/constant/routes';
 import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { SimpleCard } from '@/components/molecules/SimpleCard';

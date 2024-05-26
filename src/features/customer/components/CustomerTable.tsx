@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 
 import { useCustomerDelete } from '@/hooks/useCustomer';
 
-import { PATH } from '@/routes/__root';
+import { PATH } from '@/constant/routes';
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SuccessAlert } from '@/components/atoms/SuccessAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';

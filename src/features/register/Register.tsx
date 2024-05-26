@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import { useRegisterSubmit } from '@/hooks/useRegister';
 import { useAuthCheck } from '@/hooks/useAuthCheck';
-import { PATH } from '@/routes/__root';
+import { PATH } from '@/constant/routes';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SuccessAlert } from '@/components/atoms/SuccessAlert';
