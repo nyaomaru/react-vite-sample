@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { useNavigate } from '@tanstack/react-router';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseQuery, QueryClient } from '@tanstack/react-query';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
@@ -11,8 +11,11 @@ import { PATH } from '@/constant/routes';
 import { ButtonStyle } from '@/features/customer/Customer.css';
 import { DetailCard } from '@/features/customer/components/DetailCard';
 
+const queryClient = new QueryClient();
+
 export const Route = createFileRoute('/customer/detail/$id')({
   component: CustomerDetail,
+  loader: ({ params: { id } }) => queryClient.ensureQueryData(CustomerDetailQueries.getCustomerDetail(Number(id))),
 });
 
 function CustomerDetail() {
@@ -20,9 +23,7 @@ function CustomerDetail() {
 
   const { id } = Route.useParams();
   const navigate = useNavigate();
-  const { data, isError, error } = useSuspenseQuery({
-    ...CustomerDetailQueries.getCustomerDetail(Number(id)),
-  });
+  const { data, isError, error } = useSuspenseQuery(CustomerDetailQueries.getCustomerDetail(Number(id)));
 
   return (
     <>
