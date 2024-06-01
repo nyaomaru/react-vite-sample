@@ -1,11 +1,11 @@
-import type { Path, Control, FieldValues } from 'react-hook-form';
+import type { Control, FieldValues, Path } from 'react-hook-form';
 import { Controller, type RegisterOptions } from 'react-hook-form';
 
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
-import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
 import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
 
 type RHFRadioProps<T extends FieldValues> = {
   control: Control<T, object>;

@@ -1,8 +1,8 @@
-import { Outlet, useNavigate, useLocation } from '@tanstack/react-router';
+import { Outlet, useLocation, useNavigate } from '@tanstack/react-router';
 
 import { SimpleButton } from '@/components/atoms/SimpleButton';
-import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { PATH } from '@/constant/routes';
+import { useAuthCheck } from '@/hooks/useAuthCheck';
 
 import { ButtonStyle } from './Customer.css';
 

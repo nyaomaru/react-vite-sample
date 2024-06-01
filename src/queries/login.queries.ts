@@ -1,5 +1,5 @@
-import { createQueryKeys } from '@lukemorales/query-key-factory';
 import { axiosBase } from '@/plugins/axiosBase';
+import { createQueryKeys } from '@lukemorales/query-key-factory';
 
 import { PATH } from '@/constant/routes';
 

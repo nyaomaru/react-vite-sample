@@ -1,5 +1,5 @@
-import { useNavigate } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { useNavigate } from '@tanstack/react-router';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
@@ -18,7 +18,9 @@ export const CustomerDetail = () => {
 
   const { id } = Route.useParams();
   const navigate = useNavigate();
-  const { data, isError, error } = useSuspenseQuery(CustomerDetailQueries.getCustomerDetail(Number(id)));
+  const { data, isError, error } = useSuspenseQuery(
+    CustomerDetailQueries.getCustomerDetail(Number(id)),
+  );
 
   return (
     <>
@@ -32,7 +34,9 @@ export const CustomerDetail = () => {
           buttonName='Edit'
           buttonType='button'
           color='primary'
-          onClick={() => navigate({ to: PATH.CUSTOMER_EDIT.replace('$id', id ?? '') })}
+          onClick={() =>
+            navigate({ to: PATH.CUSTOMER_EDIT.replace('$id', id ?? '') })
+          }
         />
       </div>
 

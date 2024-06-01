@@ -33,7 +33,9 @@ export const useCustomerSubmit = (handleError: (message: string) => void) => {
 export const useCustomerDelete = (handleError: (message: string) => void) => {
   return useMutation({
     mutationFn: (customerId: string) =>
-      axiosBase.delete(PATH.CUSTOMER_DETAIL.replace('$id', customerId)).then<string>((res) => res.data ?? ''),
+      axiosBase
+        .delete(PATH.CUSTOMER_DETAIL.replace('$id', customerId))
+        .then<string>((res) => res.data ?? ''),
     onSuccess: (data) => {
       if (String(data) !== 'true') {
         handleError(data ?? '');

@@ -1,10 +1,10 @@
-import type { Path, Control, FieldValues } from 'react-hook-form';
+import type { Control, FieldValues, Path } from 'react-hook-form';
 import { Controller, type RegisterOptions } from 'react-hook-form';
 
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 type RHFSelectProps<T extends FieldValues> = {
   control: Control<T, object>;

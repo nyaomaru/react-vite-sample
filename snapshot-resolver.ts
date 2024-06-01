@@ -8,6 +8,7 @@ export default {
 
     return path.join('./__snapshots__', modifiedFileName);
   },
-  resolveTestPath: (snapshotFilePath, snapshotExtension) => path.basename(snapshotFilePath, snapshotExtension),
+  resolveTestPath: (snapshotFilePath, snapshotExtension) =>
+    path.basename(snapshotFilePath, snapshotExtension),
   testPathForConsistencyCheck: 'example',
 };

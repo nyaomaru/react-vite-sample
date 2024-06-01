@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { useForm, type SubmitHandler } from 'react-hook-form';
-import { useNavigate } from '@tanstack/react-router';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate } from '@tanstack/react-router';
+import { useState } from 'react';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 
-import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
+import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 
 import { useAppDispatch } from '@/app/hooks';
 import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';
 
-import { loginSchema, type LoginSchema } from '../-types/schema';
-import { TextFieldStyle, ButtonStyle } from './Login.css';
+import { type LoginSchema, loginSchema } from '../-types/schema';
+import { ButtonStyle, TextFieldStyle } from './Login.css';
 
 import { PATH } from '@/constant/routes';
 import { register } from '@/routes/-functions/auth';
@@ -52,7 +52,7 @@ export const Login = () => {
     try {
       await mutateAsync(data);
       navigate({ to: PATH.TOP });
-    } catch (e) {
+    } catch (_e) {
       return;
     }
     setIsLoading(false);
@@ -71,16 +71,24 @@ export const Login = () => {
         <div className={TextFieldStyle}>
           <RHFTextInput name={'username'} control={control} />
 
-          {errors.username?.message && <ErrorAlert errorMessage={errors.username.message} isShow={true} />}
+          {errors.username?.message && (
+            <ErrorAlert errorMessage={errors.username.message} isShow={true} />
+          )}
         </div>
         <div className={TextFieldStyle}>
           <RHFTextInput name={'password'} control={control} />
 
-          {errors.password?.message && <ErrorAlert errorMessage={errors.password.message} isShow={true} />}
+          {errors.password?.message && (
+            <ErrorAlert errorMessage={errors.password.message} isShow={true} />
+          )}
         </div>
 
         <div className={ButtonStyle}>
-          <SimpleButton disabled={isLoading} buttonName='Submit' buttonType='submit' />
+          <SimpleButton
+            disabled={isLoading}
+            buttonName='Submit'
+            buttonType='submit'
+          />
         </div>
       </form>
     </>

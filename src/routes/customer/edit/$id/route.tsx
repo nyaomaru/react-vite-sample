@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
 import { QueryClient } from '@tanstack/react-query';
+import { createFileRoute } from '@tanstack/react-router';
 
 import { CustomerDetailQueries } from '@/queries/customer.queries';
 
