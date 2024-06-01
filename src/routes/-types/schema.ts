@@ -5,3 +5,10 @@ export const counterState = z.object({
 });
 
 export type CounterState = z.infer<typeof counterState>;
+
+export const authSchema = z.object({
+  username: z.string(),
+  password: z.string(),
+});
+
+export type AuthSchema = z.infer<typeof authSchema>;

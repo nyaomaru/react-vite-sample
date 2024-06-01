@@ -20,16 +20,11 @@ import { Route as CustomerDetailIdRouteImport } from './routes/customer/detail/$
 
 // Create Virtual Routes
 
-const LoginLazyImport = createFileRoute('/login')()
 const RegisterRouteLazyImport = createFileRoute('/register')()
+const LoginRouteLazyImport = createFileRoute('/login')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
-
-const LoginLazyRoute = LoginLazyImport.update({
-  path: '/login',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/login.lazy').then((d) => d.Route))
 
 const RegisterRouteLazyRoute = RegisterRouteLazyImport.update({
   path: '/register',
@@ -38,10 +33,17 @@ const RegisterRouteLazyRoute = RegisterRouteLazyImport.update({
   import('./routes/register/route.lazy').then((d) => d.Route),
 )
 
+const LoginRouteLazyRoute = LoginRouteLazyImport.update({
+  path: '/login',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/login/route.lazy').then((d) => d.Route))
+
 const CustomerRouteRoute = CustomerRouteImport.update({
   path: '/customer',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/customer/route.lazy').then((d) => d.Route),
+)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -51,17 +53,23 @@ const IndexLazyRoute = IndexLazyImport.update({
 const CustomerListRouteRoute = CustomerListRouteImport.update({
   path: '/list',
   getParentRoute: () => CustomerRouteRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/customer/list/route.lazy').then((d) => d.Route),
+)
 
 const CustomerEditIdRouteRoute = CustomerEditIdRouteImport.update({
   path: '/edit/$id',
   getParentRoute: () => CustomerRouteRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/customer/edit/$id/route.lazy').then((d) => d.Route),
+)
 
 const CustomerDetailIdRouteRoute = CustomerDetailIdRouteImport.update({
   path: '/detail/$id',
   getParentRoute: () => CustomerRouteRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/customer/detail/$id/route.lazy').then((d) => d.Route),
+)
 
 // Populate the FileRoutesByPath interface
 
@@ -81,18 +89,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomerRouteImport
       parentRoute: typeof rootRoute
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/register': {
       id: '/register'
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof RegisterRouteLazyImport
-      parentRoute: typeof rootRoute
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginLazyImport
       parentRoute: typeof rootRoute
     }
     '/customer/list': {
@@ -128,8 +136,8 @@ export const routeTree = rootRoute.addChildren({
     CustomerDetailIdRouteRoute,
     CustomerEditIdRouteRoute,
   }),
+  LoginRouteLazyRoute,
   RegisterRouteLazyRoute,
-  LoginLazyRoute,
 })
 
 /* prettier-ignore-end */
@@ -142,8 +150,8 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/customer",
-        "/register",
-        "/login"
+        "/login",
+        "/register"
       ]
     },
     "/": {
@@ -157,11 +165,11 @@ export const routeTree = rootRoute.addChildren({
         "/customer/edit/$id"
       ]
     },
+    "/login": {
+      "filePath": "login/route.lazy.tsx"
+    },
     "/register": {
       "filePath": "register/route.lazy.tsx"
-    },
-    "/login": {
-      "filePath": "login.lazy.tsx"
     },
     "/customer/list": {
       "filePath": "customer/list/route.tsx",

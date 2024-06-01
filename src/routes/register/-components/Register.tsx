@@ -1,5 +1,6 @@
+import { useNavigate } from '@tanstack/react-router';
+
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -14,8 +15,7 @@ import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 import { RHFSelect } from '@/components/molecules/RHFSelect';
 import { RHFRadio } from '@/components/molecules/RHFRadio';
 
-import { registerFormSchema, type RegisterFormSchema } from './schema';
-
+import { registerFormSchema, type RegisterFormSchema } from '../-types/schema';
 import { BaseFieldStyle, FieldStyle } from './Register.css';
 
 export const Register = () => {
@@ -108,7 +108,7 @@ export const Register = () => {
             buttonName='Return'
             buttonType='button'
             color='secondary'
-            onClick={() => navigate(PATH.TOP)}
+            onClick={() => navigate({ to: PATH.TOP })}
           ></SimpleButton>
         </div>
       </form>

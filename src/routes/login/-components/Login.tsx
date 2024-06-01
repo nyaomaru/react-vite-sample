@@ -10,11 +10,11 @@ import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 import { useAppDispatch } from '@/app/hooks';
 import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';
 
-import { loginSchema, type LoginSchema } from './schema';
+import { loginSchema, type LoginSchema } from '../-types/schema';
 import { TextFieldStyle, ButtonStyle } from './Login.css';
 
 import { PATH } from '@/constant/routes';
-import { register } from '@/features/auth/auth';
+import { register } from '@/routes/-functions/auth';
 
 export const Login = () => {
   const [errorMessage, setErrorMessage] = useState('');
