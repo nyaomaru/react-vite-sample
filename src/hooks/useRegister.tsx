@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 
-import type { RegisterFormSchema } from '@/features/register/schema';
+import type { RegisterFormSchema } from '@/routes/register/-types/schema';
 import { axiosBase } from '@/plugins/axiosBase';
 
 import { PATH } from '@/constant/routes';
