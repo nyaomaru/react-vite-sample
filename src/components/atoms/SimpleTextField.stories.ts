@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn, within, userEvent, expect } from '@storybook/test';
+import { expect, fn, userEvent, within } from '@storybook/test';
 import { SimpleTextField } from './SimpleTextField';
 
 const meta = {

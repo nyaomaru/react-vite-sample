@@ -12,7 +12,7 @@ export const SuccessAlert: React.FC<SuccessAlertProps> = ({
   return (
     <>
       {isShow && (
-        <Alert variant="filled" severity="success">
+        <Alert variant='filled' severity='success'>
           {successMessage}
         </Alert>
       )}

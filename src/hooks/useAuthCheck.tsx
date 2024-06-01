@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
-import { useLocation, useNavigate } from '@tanstack/react-router';
 import { useAppSelector } from '@/app/hooks';
+import { useLocation, useNavigate } from '@tanstack/react-router';
+import { useEffect } from 'react';
 
 import { PATH } from '@/constant/routes';
 
@@ -15,5 +15,5 @@ export const useAuthCheck = () => {
         navigate({ to: PATH.LOGIN });
       }
     }
-  }, [location]);
+  }, [location, navigate, authStore]);
 };

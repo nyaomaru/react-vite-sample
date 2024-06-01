@@ -1,21 +1,21 @@
 import { useNavigate } from '@tanstack/react-router';
 
-import { useState } from 'react';
-import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { type SubmitHandler, useForm } from 'react-hook-form';
 
-import { useRegisterSubmit } from '@/hooks/useRegister';
-import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { PATH } from '@/constant/routes';
+import { useAuthCheck } from '@/hooks/useAuthCheck';
+import { useRegisterSubmit } from '@/hooks/useRegister';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
-import { SuccessAlert } from '@/components/atoms/SuccessAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
-import { RHFTextInput } from '@/components/molecules/RHFTextInput';
-import { RHFSelect } from '@/components/molecules/RHFSelect';
+import { SuccessAlert } from '@/components/atoms/SuccessAlert';
 import { RHFRadio } from '@/components/molecules/RHFRadio';
+import { RHFSelect } from '@/components/molecules/RHFSelect';
+import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 
-import { registerFormSchema, type RegisterFormSchema } from '../-types/schema';
+import { type RegisterFormSchema, registerFormSchema } from '../-types/schema';
 import { BaseFieldStyle, FieldStyle } from './Register.css';
 
 export const Register = () => {
@@ -52,7 +52,7 @@ export const Register = () => {
 
     try {
       await mutateAsync(data);
-    } catch (e) {
+    } catch (_e) {
       return;
     }
     setIsLoading(false);
@@ -66,31 +66,42 @@ export const Register = () => {
 
       <ErrorAlert errorMessage={errorMessage} isShow={showAlert} />
 
-      <SuccessAlert successMessage={'Success to register!!'} isShow={showSuccess} />
+      <SuccessAlert
+        successMessage={'Success to register!!'}
+        isShow={showSuccess}
+      />
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className={FieldStyle}>
           <RHFTextInput name={'username'} control={control} />
 
-          {errors.username?.message && <ErrorAlert errorMessage={errors.username.message} isShow={true} />}
+          {errors.username?.message && (
+            <ErrorAlert errorMessage={errors.username.message} isShow={true} />
+          )}
         </div>
 
         <div className={FieldStyle}>
           <RHFTextInput name={'password'} control={control} />
 
-          {errors.password?.message && <ErrorAlert errorMessage={errors.password.message} isShow={true} />}
+          {errors.password?.message && (
+            <ErrorAlert errorMessage={errors.password.message} isShow={true} />
+          )}
         </div>
 
         <div className={FieldStyle}>
           <RHFSelect name={'city'} control={control} />
 
-          {errors.city?.message && <ErrorAlert errorMessage={errors.city.message} isShow={true} />}
+          {errors.city?.message && (
+            <ErrorAlert errorMessage={errors.city.message} isShow={true} />
+          )}
         </div>
 
         <div className={FieldStyle}>
           <RHFRadio name={'option'} control={control} />
 
-          {errors.option?.message && <ErrorAlert errorMessage={errors.option.message} isShow={true} />}
+          {errors.option?.message && (
+            <ErrorAlert errorMessage={errors.option.message} isShow={true} />
+          )}
         </div>
 
         <div className={BaseFieldStyle}>
@@ -99,7 +110,7 @@ export const Register = () => {
             buttonName='Submit'
             buttonType='submit'
             onClick={() => setShowSuccess(false)}
-          ></SimpleButton>
+          />
         </div>
 
         <div className={BaseFieldStyle}>
@@ -109,7 +120,7 @@ export const Register = () => {
             buttonType='button'
             color='secondary'
             onClick={() => navigate({ to: PATH.TOP })}
-          ></SimpleButton>
+          />
         </div>
       </form>
     </>

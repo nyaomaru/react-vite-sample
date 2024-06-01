@@ -17,7 +17,7 @@ export const SimpleButton: React.FC<
 }) => {
   return (
     <Button
-      variant="outlined"
+      variant='outlined'
       onClick={onClick}
       disabled={disabled}
       type={buttonType}

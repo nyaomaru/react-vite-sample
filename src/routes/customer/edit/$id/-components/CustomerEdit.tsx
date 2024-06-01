@@ -1,5 +1,5 @@
-import { useNavigate } from '@tanstack/react-router';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { useNavigate } from '@tanstack/react-router';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
@@ -36,7 +36,7 @@ export const CustomerEdit = () => {
           buttonType='button'
           color='secondary'
           onClick={() => navigate({ to: PATH.CUSTOMER })}
-        ></SimpleButton>
+        />
       </div>
     </>
   );

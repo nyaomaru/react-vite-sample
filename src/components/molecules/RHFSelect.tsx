@@ -1,10 +1,10 @@
-import type { Path, Control, FieldValues } from 'react-hook-form';
+import type { Control, FieldValues, Path } from 'react-hook-form';
 import { Controller, type RegisterOptions } from 'react-hook-form';
 
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 type RHFSelectProps<T extends FieldValues> = {
   control: Control<T, object>;
@@ -24,9 +24,9 @@ export const RHFSelect = <T extends FieldValues>({
       rules={rules}
       render={({ field, fieldState }) => (
         <FormControl fullWidth error={fieldState.invalid}>
-          <InputLabel id="area-label">City</InputLabel>
-          <Select labelId="area-label" label="City" {...field}>
-            <MenuItem value="" sx={{ color: 'gray' }}>
+          <InputLabel id='area-label'>City</InputLabel>
+          <Select labelId='area-label' label='City' {...field}>
+            <MenuItem value='' sx={{ color: 'gray' }}>
               No select
             </MenuItem>
             <MenuItem value={1}>Tokyo</MenuItem>

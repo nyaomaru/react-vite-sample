@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { axiosBase } from '@/plugins/axiosBase';
-import type { CustomerDetailSchema } from '@/features/customer/schema';
+import type { CustomerDetailSchema } from '@/routes/customer/-types/schema';
 
 import { PATH } from '@/constant/routes';
 
@@ -33,7 +33,9 @@ export const useCustomerSubmit = (handleError: (message: string) => void) => {
 export const useCustomerDelete = (handleError: (message: string) => void) => {
   return useMutation({
     mutationFn: (customerId: string) =>
-      axiosBase.delete(PATH.CUSTOMER_DETAIL.replace('$id', customerId)).then<string>((res) => res.data ?? ''),
+      axiosBase
+        .delete(PATH.CUSTOMER_DETAIL.replace('$id', customerId))
+        .then<string>((res) => res.data ?? ''),
     onSuccess: (data) => {
       if (String(data) !== 'true') {
         handleError(data ?? '');

@@ -1,21 +1,21 @@
-import { useState } from 'react';
 import { Link } from '@tanstack/react-router';
+import { useState } from 'react';
 
+import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 
 import { useCustomerDelete } from '@/hooks/useCustomer';
 
-import { PATH } from '@/constant/routes';
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
-import { SuccessAlert } from '@/components/atoms/SuccessAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
+import { SuccessAlert } from '@/components/atoms/SuccessAlert';
 import { DeleteDialog } from '@/components/molecules/DeleteDialog';
+import { PATH } from '@/constant/routes';
 
 import type { CustomerListSchema } from '../-types/schema';
 
@@ -51,7 +51,7 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
     if (deleteId !== '') {
       try {
         await mutateAsync(deleteId);
-      } catch (e) {
+      } catch (_e) {
         return;
       }
     }
@@ -65,7 +65,10 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
     <>
       <ErrorAlert errorMessage={errorMessage} isShow={showAlert} />
 
-      <SuccessAlert successMessage={'Success to Delete!!'} isShow={showSuccess} />
+      <SuccessAlert
+        successMessage={'Success to Delete!!'}
+        isShow={showSuccess}
+      />
 
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label='sticky table' stickyHeader>
@@ -77,29 +80,31 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data !== undefined &&
-              data.map((row: { name: string; id: string }) => (
-                <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell component='th' scope='row'>
-                    {row.name}
-                  </TableCell>
-                  <TableCell align='right'>
-                    <Link to={PATH.CUSTOMER_DETAIL} params={{ id: row.id }}>
-                      {row.id}
-                    </Link>
-                  </TableCell>
-                  <TableCell align='right'>
-                    <SimpleButton
-                      buttonName={'Delete'}
-                      buttonType='submit'
-                      color='error'
-                      onClick={() => handleOpen(row.id)}
-                    >
-                      {row.id}
-                    </SimpleButton>
-                  </TableCell>
-                </TableRow>
-              ))}
+            {data?.map((row: { name: string; id: string }) => (
+              <TableRow
+                key={row.name}
+                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              >
+                <TableCell component='th' scope='row'>
+                  {row.name}
+                </TableCell>
+                <TableCell align='right'>
+                  <Link to={PATH.CUSTOMER_DETAIL} params={{ id: row.id }}>
+                    {row.id}
+                  </Link>
+                </TableCell>
+                <TableCell align='right'>
+                  <SimpleButton
+                    buttonName={'Delete'}
+                    buttonType='submit'
+                    color='error'
+                    onClick={() => handleOpen(row.id)}
+                  >
+                    {row.id}
+                  </SimpleButton>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
