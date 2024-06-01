@@ -17,7 +17,7 @@ import { SuccessAlert } from '@/components/atoms/SuccessAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { DeleteDialog } from '@/components/molecules/DeleteDialog';
 
-import type { CustomerListSchema } from '@/features/customer/schema';
+import type { CustomerListSchema } from '../-types/schema';
 
 type CustomerTableProps = {
   data: CustomerListSchema;
@@ -78,7 +78,7 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
           </TableHead>
           <TableBody>
             {data !== undefined &&
-              data.map((row) => (
+              data.map((row: { name: string; id: string }) => (
                 <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                   <TableCell component='th' scope='row'>
                     {row.name}

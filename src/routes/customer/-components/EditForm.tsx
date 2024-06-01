@@ -4,12 +4,12 @@ import { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { CardContentStyle } from '../Customer.css';
+import { CardContentStyle } from './Customer.css';
 
 import { useCustomerSubmit } from '@/hooks/useCustomer';
 
-import { customerDetailSchema } from '../schema';
-import type { CustomerDetailSchema } from '../schema';
+import { customerDetailSchema } from '../-types/schema';
+import type { CustomerDetailSchema } from '../-types/schema';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SuccessAlert } from '@/components/atoms/SuccessAlert';
@@ -71,10 +71,7 @@ export const EditForm = ({ id, data }: EditFormProps) => {
     <>
       <ErrorAlert errorMessage={errorMessage} isShow={showAlert} />
 
-      <SuccessAlert
-        successMessage={'Success to register!!'}
-        isShow={showSuccess}
-      />
+      <SuccessAlert successMessage={'Success to register!!'} isShow={showSuccess} />
 
       <Card sx={{ minWidth: 275 }}>
         <CardContent className={CardContentStyle}>
@@ -82,36 +79,23 @@ export const EditForm = ({ id, data }: EditFormProps) => {
             <div>
               <RHFTextInput name={'name'} control={control} />
 
-              {errors.name?.message && (
-                <ErrorAlert errorMessage={errors.name.message} isShow={true} />
-              )}
+              {errors.name?.message && <ErrorAlert errorMessage={errors.name.message} isShow={true} />}
             </div>
 
             <div>
               <RHFSelect name={'city'} control={control} />
 
-              {errors.city?.message && (
-                <ErrorAlert errorMessage={errors.city.message} isShow={true} />
-              )}
+              {errors.city?.message && <ErrorAlert errorMessage={errors.city.message} isShow={true} />}
             </div>
 
             <div>
               <RHFRadio name={'favorite'} control={control} />
 
-              {errors.favorite?.message && (
-                <ErrorAlert
-                  errorMessage={errors.favorite.message}
-                  isShow={true}
-                />
-              )}
+              {errors.favorite?.message && <ErrorAlert errorMessage={errors.favorite.message} isShow={true} />}
             </div>
 
             <div>
-              <SimpleButton
-                disabled={isLoading}
-                buttonName="Submit"
-                buttonType="submit"
-              ></SimpleButton>
+              <SimpleButton disabled={isLoading} buttonName='Submit' buttonType='submit'></SimpleButton>
             </div>
           </form>
         </CardContent>

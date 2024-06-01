@@ -41,7 +41,9 @@ const RegisterRouteLazyRoute = RegisterRouteLazyImport.update({
 const CustomerRouteRoute = CustomerRouteImport.update({
   path: '/customer',
   getParentRoute: () => rootRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/customer/route.lazy').then((d) => d.Route),
+)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -51,17 +53,23 @@ const IndexLazyRoute = IndexLazyImport.update({
 const CustomerListRouteRoute = CustomerListRouteImport.update({
   path: '/list',
   getParentRoute: () => CustomerRouteRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/customer/list/route.lazy').then((d) => d.Route),
+)
 
 const CustomerEditIdRouteRoute = CustomerEditIdRouteImport.update({
   path: '/edit/$id',
   getParentRoute: () => CustomerRouteRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/customer/edit/$id/route.lazy').then((d) => d.Route),
+)
 
 const CustomerDetailIdRouteRoute = CustomerDetailIdRouteImport.update({
   path: '/detail/$id',
   getParentRoute: () => CustomerRouteRoute,
-} as any)
+} as any).lazy(() =>
+  import('./routes/customer/detail/$id/route.lazy').then((d) => d.Route),
+)
 
 // Populate the FileRoutesByPath interface
 
