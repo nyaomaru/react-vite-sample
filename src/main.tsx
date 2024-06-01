@@ -39,7 +39,7 @@ const darkTheme = createTheme({
   },
 });
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+// biome-ignore lint: noNonNullAssertion
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider theme={darkTheme}>

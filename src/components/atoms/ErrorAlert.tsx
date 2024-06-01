@@ -12,7 +12,7 @@ export const ErrorAlert: React.FC<ErrorAlertProps> = ({
   return (
     <>
       {isShow && (
-        <Alert variant="filled" severity="error">
+        <Alert variant='filled' severity='error'>
           {errorMessage}
         </Alert>
       )}

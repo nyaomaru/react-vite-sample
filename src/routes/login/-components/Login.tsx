@@ -80,7 +80,7 @@ export const Login = () => {
         </div>
 
         <div className={ButtonStyle}>
-          <SimpleButton disabled={isLoading} buttonName='Submit' buttonType='submit'></SimpleButton>
+          <SimpleButton disabled={isLoading} buttonName='Submit' buttonType='submit' />
         </div>
       </form>
     </>

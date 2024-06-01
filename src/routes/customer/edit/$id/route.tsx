@@ -6,5 +6,8 @@ import { CustomerDetailQueries } from '@/queries/customer.queries';
 const queryClient = new QueryClient();
 
 export const Route = createFileRoute('/customer/edit/$id')({
-  loader: ({ params: { id } }) => queryClient.ensureQueryData(CustomerDetailQueries.getCustomerDetail(Number(id))),
+  loader: ({ params: { id } }) =>
+    queryClient.ensureQueryData(
+      CustomerDetailQueries.getCustomerDetail(Number(id)),
+    ),
 });

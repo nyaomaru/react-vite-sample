@@ -15,5 +15,5 @@ export const useAuthCheck = () => {
         navigate({ to: PATH.LOGIN });
       }
     }
-  }, [location]);
+  }, [location, navigate, authStore]);
 };

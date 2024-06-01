@@ -99,7 +99,7 @@ export const Register = () => {
             buttonName='Submit'
             buttonType='submit'
             onClick={() => setShowSuccess(false)}
-          ></SimpleButton>
+          />
         </div>
 
         <div className={BaseFieldStyle}>
@@ -109,7 +109,7 @@ export const Register = () => {
             buttonType='button'
             color='secondary'
             onClick={() => navigate({ to: PATH.TOP })}
-          ></SimpleButton>
+          />
         </div>
       </form>
     </>

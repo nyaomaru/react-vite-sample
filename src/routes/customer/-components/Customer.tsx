@@ -15,7 +15,7 @@ export const Customer = () => {
   return (
     <>
       <h1>Customer page</h1>
-      <Outlet></Outlet>
+      <Outlet />
 
       {location.pathname === PATH.CUSTOMER && (
         <>
@@ -25,7 +25,7 @@ export const Customer = () => {
               buttonType='button'
               color='primary'
               onClick={() => navigate({ to: PATH.CUSTOMER_LIST })}
-            ></SimpleButton>
+            />
           </div>
 
           <div className={ButtonStyle}>
@@ -34,7 +34,7 @@ export const Customer = () => {
               buttonType='button'
               color='secondary'
               onClick={() => navigate({ to: PATH.TOP })}
-            ></SimpleButton>
+            />
           </div>
         </>
       )}

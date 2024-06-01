@@ -95,7 +95,7 @@ export const EditForm = ({ id, data }: EditFormProps) => {
             </div>
 
             <div>
-              <SimpleButton disabled={isLoading} buttonName='Submit' buttonType='submit'></SimpleButton>
+              <SimpleButton disabled={isLoading} buttonName='Submit' buttonType='submit' />
             </div>
           </form>
         </CardContent>

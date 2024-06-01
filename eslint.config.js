@@ -32,5 +32,5 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
       'react-hooks': pluginReactHooks,
     },
-  }
+  },
 );

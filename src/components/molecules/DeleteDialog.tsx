@@ -24,18 +24,18 @@ export const DeleteDialog: React.FC<DeleteDialogProps> = ({
     <Dialog
       open={open}
       onClose={handleClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
+      aria-labelledby='alert-dialog-title'
+      aria-describedby='alert-dialog-description'
     >
-      <DialogTitle id="alert-dialog-title">{dialogTitle}</DialogTitle>
+      <DialogTitle id='alert-dialog-title'>{dialogTitle}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
+        <DialogContentText id='alert-dialog-description'>
           {dialogMessage}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button color="error" onClick={handleDelete} autoFocus>
+        <Button color='error' onClick={handleDelete} autoFocus>
           Delete
         </Button>
       </DialogActions>

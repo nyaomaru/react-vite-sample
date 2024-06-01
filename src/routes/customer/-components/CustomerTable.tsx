@@ -77,29 +77,28 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data !== undefined &&
-              data.map((row: { name: string; id: string }) => (
-                <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                  <TableCell component='th' scope='row'>
-                    {row.name}
-                  </TableCell>
-                  <TableCell align='right'>
-                    <Link to={PATH.CUSTOMER_DETAIL} params={{ id: row.id }}>
-                      {row.id}
-                    </Link>
-                  </TableCell>
-                  <TableCell align='right'>
-                    <SimpleButton
-                      buttonName={'Delete'}
-                      buttonType='submit'
-                      color='error'
-                      onClick={() => handleOpen(row.id)}
-                    >
-                      {row.id}
-                    </SimpleButton>
-                  </TableCell>
-                </TableRow>
-              ))}
+            {data?.map((row: { name: string; id: string }) => (
+              <TableRow key={row.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                <TableCell component='th' scope='row'>
+                  {row.name}
+                </TableCell>
+                <TableCell align='right'>
+                  <Link to={PATH.CUSTOMER_DETAIL} params={{ id: row.id }}>
+                    {row.id}
+                  </Link>
+                </TableCell>
+                <TableCell align='right'>
+                  <SimpleButton
+                    buttonName={'Delete'}
+                    buttonType='submit'
+                    color='error'
+                    onClick={() => handleOpen(row.id)}
+                  >
+                    {row.id}
+                  </SimpleButton>
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

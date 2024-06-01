@@ -33,7 +33,7 @@ export const CustomerDetail = () => {
           buttonType='button'
           color='primary'
           onClick={() => navigate({ to: PATH.CUSTOMER_EDIT.replace('$id', id ?? '') })}
-        ></SimpleButton>
+        />
       </div>
 
       <div className={ButtonStyle}>
@@ -42,7 +42,7 @@ export const CustomerDetail = () => {
           buttonType='button'
           color='secondary'
           onClick={() => navigate({ to: PATH.CUSTOMER })}
-        ></SimpleButton>
+        />
       </div>
     </>
   );

@@ -24,9 +24,9 @@ export const RHFSelect = <T extends FieldValues>({
       rules={rules}
       render={({ field, fieldState }) => (
         <FormControl fullWidth error={fieldState.invalid}>
-          <InputLabel id="area-label">City</InputLabel>
-          <Select labelId="area-label" label="City" {...field}>
-            <MenuItem value="" sx={{ color: 'gray' }}>
+          <InputLabel id='area-label'>City</InputLabel>
+          <Select labelId='area-label' label='City' {...field}>
+            <MenuItem value='' sx={{ color: 'gray' }}>
               No select
             </MenuItem>
             <MenuItem value={1}>Tokyo</MenuItem>

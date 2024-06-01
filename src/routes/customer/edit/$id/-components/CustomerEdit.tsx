@@ -36,7 +36,7 @@ export const CustomerEdit = () => {
           buttonType='button'
           color='secondary'
           onClick={() => navigate({ to: PATH.CUSTOMER })}
-        ></SimpleButton>
+        />
       </div>
     </>
   );

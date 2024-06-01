@@ -25,29 +25,29 @@ export const RHFRadio = <T extends FieldValues>({
       rules={rules}
       render={({ field, fieldState }) => (
         <FormControl fullWidth error={fieldState.invalid}>
-          <FormLabel id="demo-row-radio-buttons-group-label">Option</FormLabel>
+          <FormLabel id='demo-row-radio-buttons-group-label'>Option</FormLabel>
           <RadioGroup
             row
-            aria-labelledby="demo-row-radio-buttons-group-label"
-            name="row-radio-buttons-group"
+            aria-labelledby='demo-row-radio-buttons-group-label'
+            name='row-radio-buttons-group'
           >
             <FormControlLabel
               {...field}
-              value="0"
+              value='0'
               control={<Radio />}
-              label="cat"
+              label='cat'
             />
             <FormControlLabel
               {...field}
-              value="1"
+              value='1'
               control={<Radio />}
-              label="dog"
+              label='dog'
             />
             <FormControlLabel
               {...field}
-              value="2"
+              value='2'
               control={<Radio />}
-              label="Other"
+              label='Other'
             />
           </RadioGroup>
         </FormControl>

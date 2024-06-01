@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 
 import { axiosBase } from '@/plugins/axiosBase';
-import type { CustomerDetailSchema } from '@/features/customer/schema';
+import type { CustomerDetailSchema } from '@/routes/customer/-types/schema';
 
 import { PATH } from '@/constant/routes';
 

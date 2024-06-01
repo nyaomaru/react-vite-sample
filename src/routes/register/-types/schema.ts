@@ -1,7 +1,7 @@
 import z from 'zod';
 
 const castToValOrNull = <T extends Parameters<typeof z.preprocess>[1]>(
-  schema: T
+  schema: T,
 ) =>
   z.preprocess((val) => {
     if (typeof val === 'string') {

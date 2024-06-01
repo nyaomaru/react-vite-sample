@@ -7,10 +7,10 @@ export const Counter = () => {
   return (
     <div>
       <div>
-        <button aria-label='Increment value' onClick={() => dispatch(increment())}>
+        <button type='button' aria-label='Increment value' onClick={() => dispatch(increment())}>
           Increment
         </button>
-        <button aria-label='Decrement value' onClick={() => dispatch(decrement())}>
+        <button type='button' aria-label='Decrement value' onClick={() => dispatch(decrement())}>
           Decrement
         </button>
       </div>

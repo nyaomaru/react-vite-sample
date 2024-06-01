@@ -23,7 +23,7 @@ export const SimpleCard: React.FC<SimpleCardProps> = ({ countStore, minWidth = 2
         <Typography variant='body2'>{countStore}</Typography>
       </CardContent>
       <CardActions>
-        <Counter></Counter>
+        <Counter />
       </CardActions>
     </Card>
   );
