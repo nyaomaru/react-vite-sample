@@ -1,10 +1,6 @@
-import { createLazyFileRoute } from "@tanstack/react-router";
-import { Top } from "@/features/top/Top";
+import { createLazyFileRoute } from '@tanstack/react-router';
+import { Top } from './-components/Top';
 
-export const Route = createLazyFileRoute("/")({
-  component: Index,
+export const Route = createLazyFileRoute('/')({
+  component: Top,
 });
-
-function Index() {
-  return <Top />;
-}
