@@ -103,8 +103,7 @@
       "bracketSameLine": false,
       "quoteStyle": "single",
       "attributePosition": "auto"
-    },
-    "globals": []
+    }
   },
   "overrides": [
     {
