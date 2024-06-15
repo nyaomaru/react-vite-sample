@@ -1,0 +1,11 @@
+FROM node:20.12.0-bookworm
+LABEL maintainer="Nyaomaru<nyaonyao0725@gmail.com>"
+
+WORKDIR /app
+
+RUN git clone https://github.com/nyaomaru/graphql_sample . && \
+    yarn
+
+EXPOSE 4000
+
+CMD ["yarn", "start"]
