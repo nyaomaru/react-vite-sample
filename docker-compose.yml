@@ -7,10 +7,13 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      NODE_PATH: /tmp/node_modules
     command:
       - sh
       - -c
       - |
+        yarn install --immutable
         yarn dev
     restart: always
     tty: true

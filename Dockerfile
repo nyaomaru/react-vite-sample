@@ -9,6 +9,5 @@ COPY .yarn ./.yarn
 
 RUN corepack enable
 RUN yarn set version stable
-RUN yarn install --immutable
 
 COPY . /app
