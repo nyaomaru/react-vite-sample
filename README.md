@@ -29,3 +29,12 @@ yarn dev
 ```
 
 You need to login, But the ID & Password is OK anything (minimum 3 characters)
+
+### GraphQL Sample
+
+If you try to use GraphQL sample page that is `book`, you should run `graphql_sample` server.
+
+```sh
+git clone https://github.com/nyaomaru/graphql_sample
+yarn && yarn start
+```

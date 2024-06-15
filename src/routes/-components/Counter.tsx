@@ -6,22 +6,12 @@ export const Counter = () => {
 
   return (
     <div>
-      <div>
-        <button
-          type='button'
-          aria-label='Increment value'
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </button>
-        <button
-          type='button'
-          aria-label='Decrement value'
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </button>
-      </div>
+      <button type='button' aria-label='Increment value' onClick={() => dispatch(increment())}>
+        Increment
+      </button>
+      <button type='button' aria-label='Decrement value' onClick={() => dispatch(decrement())}>
+        Decrement
+      </button>
     </div>
   );
 };

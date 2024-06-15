@@ -25,7 +25,8 @@ export const CustomerEdit = () => {
 
   return (
     <>
-      <h1>Customer edit page</h1>
+      <h2>Edit</h2>
+
       <h2>ID: {id}</h2>
       {isError && <ErrorAlert errorMessage={error?.message ?? ''} />}
       {data !== undefined && <EditForm id={id ?? ''} data={data} />}

@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 
 import { store } from '@/app/store';
 
+import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -28,10 +29,15 @@ const router = createRouter({
 
 // Register the router instance for type safety
 declare module '@tanstack/react-router' {
-  type Register = {
+  interface Register {
     router: typeof router;
-  };
+  }
 }
+
+const client = new ApolloClient({
+  uri: 'http://localhost:4000',
+  cache: new InMemoryCache(),
+});
 
 const darkTheme = createTheme({
   palette: {
@@ -45,9 +51,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-        </QueryClientProvider>
+        <ApolloProvider client={client}>
+          <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router} />
+          </QueryClientProvider>
+        </ApolloProvider>
       </Provider>
     </ThemeProvider>
   </React.StrictMode>,

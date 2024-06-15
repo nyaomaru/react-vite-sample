@@ -19,6 +19,8 @@ export const CustomerList = () => {
 
   return (
     <>
+      <h2>List</h2>
+
       {isError && <ErrorAlert errorMessage={error?.message ?? ''} />}
       {data !== undefined && <CustomerTable data={data} />}
 
