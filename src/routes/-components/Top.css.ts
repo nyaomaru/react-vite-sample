@@ -7,3 +7,8 @@ export const CardStyle = style({
 export const ButtonStyle = style({
   margin: '1rem',
 });
+
+export const ButtonGroupStyle = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+});

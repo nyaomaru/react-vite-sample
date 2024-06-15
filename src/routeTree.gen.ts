@@ -22,6 +22,7 @@ import { Route as CustomerDetailIdRouteImport } from './routes/customer/detail/$
 
 const RegisterRouteLazyImport = createFileRoute('/register')()
 const LoginRouteLazyImport = createFileRoute('/login')()
+const BookRouteLazyImport = createFileRoute('/book')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
@@ -37,6 +38,11 @@ const LoginRouteLazyRoute = LoginRouteLazyImport.update({
   path: '/login',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/login/route.lazy').then((d) => d.Route))
+
+const BookRouteLazyRoute = BookRouteLazyImport.update({
+  path: '/book',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/book/route.lazy').then((d) => d.Route))
 
 const CustomerRouteRoute = CustomerRouteImport.update({
   path: '/customer',
@@ -89,6 +95,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CustomerRouteImport
       parentRoute: typeof rootRoute
     }
+    '/book': {
+      id: '/book'
+      path: '/book'
+      fullPath: '/book'
+      preLoaderRoute: typeof BookRouteLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -136,6 +149,7 @@ export const routeTree = rootRoute.addChildren({
     CustomerDetailIdRouteRoute,
     CustomerEditIdRouteRoute,
   }),
+  BookRouteLazyRoute,
   LoginRouteLazyRoute,
   RegisterRouteLazyRoute,
 })
@@ -150,6 +164,7 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/customer",
+        "/book",
         "/login",
         "/register"
       ]
@@ -164,6 +179,9 @@ export const routeTree = rootRoute.addChildren({
         "/customer/detail/$id",
         "/customer/edit/$id"
       ]
+    },
+    "/book": {
+      "filePath": "book/route.lazy.tsx"
     },
     "/login": {
       "filePath": "login/route.lazy.tsx"
