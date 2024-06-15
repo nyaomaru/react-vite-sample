@@ -17,11 +17,10 @@ const GET_BOOK_TYPE = gql`
 
 export const Book = () => {
   const { loading, error, data } = useQuery(GET_BOOK_TYPE);
+  const navigate = useNavigate();
 
   if (loading) return <p>Loading...</p>;
   if (error) return <ErrorAlert errorMessage={error.message} />;
-
-  const navigate = useNavigate();
 
   return (
     <>

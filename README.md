@@ -13,6 +13,16 @@ Sandbox for below libraries with React & Vite
 
 ## 🚀 Get started
 
+### 🐋 Docker
+
+If you can use docker, easy way to start.
+
+```sh
+docker compose up -d
+```
+
+### 😺 Yarn
+
 This project needs swagger api.
 
 Firstly, you clone below repository and run below command.
