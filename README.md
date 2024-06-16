@@ -10,6 +10,7 @@ Sandbox for below libraries with React & Vite
 - `@vanilla-extract/css`
 - `@storybook/test-runner`
 - `Biome`
+- `@apollo/client`
 
 ## 🚀 Get started
 
@@ -20,6 +21,8 @@ If you can use docker, easy way to start.
 ```sh
 docker compose up -d
 ```
+
+Then, you can access to `http://localhost:5173/`.
 
 ### 😺 Yarn
 
@@ -32,7 +35,7 @@ git clone https://github.com/nyaomaru/react_vite_swagger
 npm start
 ```
 
-After run API server, you run below command
+After run API server, you run below command.
 
 ```sh
 yarn dev
