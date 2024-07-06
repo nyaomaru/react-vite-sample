@@ -3,8 +3,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';
-import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
+import { RHFTextInput } from '@/components/molecules/RHFTextInput';
 
 import { type BookSchema, bookSchema } from '../-types/schema';
 import { ButtonStyle, TextFieldStyle } from './BookForm.css';
@@ -52,15 +52,23 @@ export const BookForm = () => {
         <div className={TextFieldStyle}>
           <RHFTextInput name={'title'} control={control} />
 
-          {errors.title?.message && <ErrorAlert errorMessage={errors.title.message} isShow={true} />}
+          {errors.title?.message && (
+            <ErrorAlert errorMessage={errors.title.message} isShow={true} />
+          )}
         </div>
         <div className={TextFieldStyle}>
           <RHFTextInput name={'author'} control={control} />
 
-          {errors.author?.message && <ErrorAlert errorMessage={errors.author.message} isShow={true} />}
+          {errors.author?.message && (
+            <ErrorAlert errorMessage={errors.author.message} isShow={true} />
+          )}
         </div>
         <div className={ButtonStyle}>
-          <SimpleButton buttonName='Submit' buttonType='submit' color='primary' />
+          <SimpleButton
+            buttonName='Submit'
+            buttonType='submit'
+            color='primary'
+          />
         </div>
       </form>
 

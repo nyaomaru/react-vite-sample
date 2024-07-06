@@ -7,7 +7,7 @@ import { PATH } from '@/constant/routes';
 import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { SimpleCard } from './SimpleCard';
 
-import { ButtonStyle, ButtonGroupStyle, CardStyle } from './Top.css';
+import { ButtonGroupStyle, ButtonStyle, CardStyle } from './Top.css';
 
 export const Top = () => {
   useAuthCheck();
@@ -21,7 +21,10 @@ export const Top = () => {
 
       <h2>Count up</h2>
       <div className={CardStyle}>
-        <SimpleButton buttonName='Count Up' onClick={() => setCount((count) => count + 1)} />
+        <SimpleButton
+          buttonName='Count Up'
+          onClick={() => setCount((count) => count + 1)}
+        />
         <p>count is {count}</p>
       </div>
 
@@ -31,13 +34,24 @@ export const Top = () => {
       <h2>Page</h2>
       <div className={ButtonGroupStyle}>
         <div className={ButtonStyle}>
-          <SimpleButton buttonName='Register' onClick={() => navigate({ to: PATH.REGISTER })} />
+          <SimpleButton
+            buttonName='Register'
+            onClick={() => navigate({ to: PATH.REGISTER })}
+          />
         </div>
         <div className={ButtonStyle}>
-          <SimpleButton color='secondary' buttonName='Customer' onClick={() => navigate({ to: PATH.CUSTOMER })} />
+          <SimpleButton
+            color='secondary'
+            buttonName='Customer'
+            onClick={() => navigate({ to: PATH.CUSTOMER })}
+          />
         </div>
         <div className={ButtonStyle}>
-          <SimpleButton color='info' buttonName='GraphQL Sample' onClick={() => navigate({ to: PATH.BOOK })} />
+          <SimpleButton
+            color='info'
+            buttonName='GraphQL Sample'
+            onClick={() => navigate({ to: PATH.BOOK })}
+          />
         </div>
       </div>
     </>
