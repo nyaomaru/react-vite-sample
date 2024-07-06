@@ -5,6 +5,8 @@ import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
 import { PATH } from '@/constant/routes';
+import { cityList } from '@/domain/city';
+import { animalList } from '@/domain/animal';
 import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { useRegisterSubmit } from '@/hooks/useRegister';
 
@@ -89,7 +91,7 @@ export const Register = () => {
         </div>
 
         <div className={FieldStyle}>
-          <RHFSelect name={'city'} control={control} />
+          <RHFSelect name={'city'} control={control} selectValues={cityList} />
 
           {errors.city?.message && (
             <ErrorAlert errorMessage={errors.city.message} isShow={true} />
@@ -97,7 +99,11 @@ export const Register = () => {
         </div>
 
         <div className={FieldStyle}>
-          <RHFRadio name={'option'} control={control} />
+          <RHFRadio
+            name={'option'}
+            control={control}
+            selectValues={animalList}
+          />
 
           {errors.option?.message && (
             <ErrorAlert errorMessage={errors.option.message} isShow={true} />

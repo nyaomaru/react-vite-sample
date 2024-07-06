@@ -1,20 +1,27 @@
 import type { Control, FieldValues, Path } from 'react-hook-form';
 import { Controller, type RegisterOptions } from 'react-hook-form';
 
+import { styled } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 
+const CustomMenuItem = styled(MenuItem)({
+  color: 'gray',
+});
+
 type RHFSelectProps<T extends FieldValues> = {
   control: Control<T, object>;
   name: Path<T>;
+  selectValues: string[];
   rules?: RegisterOptions<T>;
 };
 
 export const RHFSelect = <T extends FieldValues>({
   name,
   control,
+  selectValues,
   rules,
 }: RHFSelectProps<T>) => {
   return (
@@ -24,19 +31,18 @@ export const RHFSelect = <T extends FieldValues>({
       rules={rules}
       render={({ field, fieldState }) => (
         <FormControl fullWidth error={fieldState.invalid}>
-          <InputLabel id='area-label'>City</InputLabel>
-          <Select labelId='area-label' label='City' {...field}>
-            <MenuItem value='' sx={{ color: 'gray' }}>
-              No select
-            </MenuItem>
-            <MenuItem value={1}>Tokyo</MenuItem>
-            <MenuItem value={2}>Amsterdam</MenuItem>
-            <MenuItem value={4}>London</MenuItem>
-            <MenuItem value={5}>Paris</MenuItem>
-            <MenuItem value={6}>NewYork</MenuItem>
-            <MenuItem value={7}>LA</MenuItem>
-            <MenuItem value={8}>Bologna</MenuItem>
-            <MenuItem value={9}>Madrid</MenuItem>
+          <InputLabel id={`select-${name.toLocaleLowerCase()}`}>
+            {name}
+          </InputLabel>
+          <Select
+            labelId={`select-${name.toLocaleLowerCase()}`}
+            label={name}
+            {...field}
+          >
+            <CustomMenuItem value=''>No select</CustomMenuItem>
+            {selectValues.map((item, index) => (
+              <MenuItem value={index + 1}>{item}</MenuItem>
+            ))}
           </Select>
         </FormControl>
       )}

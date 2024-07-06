@@ -10,12 +10,14 @@ import RadioGroup from '@mui/material/RadioGroup';
 type RHFRadioProps<T extends FieldValues> = {
   control: Control<T, object>;
   name: Path<T>;
+  selectValues: string[];
   rules?: RegisterOptions<T>;
 };
 
 export const RHFRadio = <T extends FieldValues>({
   name,
   control,
+  selectValues,
   rules,
 }: RHFRadioProps<T>) => {
   return (
@@ -25,30 +27,22 @@ export const RHFRadio = <T extends FieldValues>({
       rules={rules}
       render={({ field, fieldState }) => (
         <FormControl fullWidth error={fieldState.invalid}>
-          <FormLabel id='demo-row-radio-buttons-group-label'>Option</FormLabel>
+          <FormLabel id={`radio-buttons-group-label-${name.toLocaleLowerCase}`}>
+            {name}
+          </FormLabel>
           <RadioGroup
             row
-            aria-labelledby='demo-row-radio-buttons-group-label'
-            name='row-radio-buttons-group'
+            aria-labelledby={`radio-buttons-group-${name.toLocaleLowerCase}`}
+            name={`row-radio-buttons-group-${name.toLocaleLowerCase}`}
           >
-            <FormControlLabel
-              {...field}
-              value='0'
-              control={<Radio />}
-              label='cat'
-            />
-            <FormControlLabel
-              {...field}
-              value='1'
-              control={<Radio />}
-              label='dog'
-            />
-            <FormControlLabel
-              {...field}
-              value='2'
-              control={<Radio />}
-              label='Other'
-            />
+            {selectValues.map((item, index) => (
+              <FormControlLabel
+                {...field}
+                value={String(index)}
+                control={<Radio />}
+                label={item}
+              />
+            ))}
           </RadioGroup>
         </FormControl>
       )}
