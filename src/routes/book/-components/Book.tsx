@@ -1,4 +1,4 @@
-import { useQuery, gql } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { useNavigate } from '@tanstack/react-router';
 
 import { ErrorAlert } from '@/components/atoms/ErrorAlert';

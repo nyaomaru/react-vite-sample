@@ -1,9 +1,9 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
-import type { LoginSchema } from '@/routes/login/-types/schema';
 import { axiosBase } from '@/plugins/axiosBase';
 import { LoginQueries } from '@/queries/login.queries';
+import type { LoginSchema } from '@/routes/login/-types/schema';
 
 import { PATH } from '@/constant/routes';
 

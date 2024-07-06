@@ -11,7 +11,10 @@ type SimpleCardProps = {
   minWidth: number;
 };
 
-export const SimpleCard: React.FC<SimpleCardProps> = ({ countStore, minWidth = 275 }) => {
+export const SimpleCard: React.FC<SimpleCardProps> = ({
+  countStore,
+  minWidth = 275,
+}) => {
   return (
     <Card sx={{ minWidth: minWidth }}>
       <CardContent>

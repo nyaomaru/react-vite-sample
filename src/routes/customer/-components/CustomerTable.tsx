@@ -114,7 +114,7 @@ export const CustomerTable: React.FC<CustomerTableProps> = ({ data }) => {
         handleClose={handleClose}
         handleDelete={handleDelete}
         dialogTitle={'Delete customer detail'}
-        dialogMessage={`Can I really delete ID: ${deleteId}`}
+        dialogMessage={`Can I really delete ID: ${deleteId} ?`}
       />
     </>
   );

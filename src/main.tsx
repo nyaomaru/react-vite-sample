@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 
 import { store } from '@/app/store';
 
-import { ApolloClient, InMemoryCache, ApolloProvider, gql } from '@apollo/client';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 

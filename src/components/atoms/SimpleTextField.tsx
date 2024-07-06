@@ -1,4 +1,5 @@
 import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
 
 type TextFieldProps = {
   id: string;
@@ -8,14 +9,14 @@ type TextFieldProps = {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-const simpleTextFieldStyle = {
+const CustomTextField = styled(TextField)({
   '& .MuiInputBase-input': {
     color: '#FFFFFF',
   },
   '& label': {
     color: '#FFFFFF !important',
   },
-};
+});
 
 export const SimpleTextField = ({
   id,
@@ -26,8 +27,7 @@ export const SimpleTextField = ({
   ...field
 }: TextFieldProps) => {
   return (
-    <TextField
-      sx={simpleTextFieldStyle}
+    <CustomTextField
       id={id}
       label={label}
       variant='filled'

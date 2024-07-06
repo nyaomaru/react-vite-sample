@@ -4,8 +4,14 @@ import CardContent from '@mui/material/CardContent';
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
-import { CardContentStyle } from './Customer.css';
+import {
+  CardContentStyle,
+  CardContentAreaStyle,
+  CardContentButtonStyle,
+} from './Customer.css';
 
+import { cityList } from '@/domain/city';
+import { animalList } from '@/domain/animal';
 import { useCustomerSubmit } from '@/hooks/useCustomer';
 
 import { customerDetailSchema } from '../-types/schema';
@@ -79,7 +85,7 @@ export const EditForm = ({ id, data }: EditFormProps) => {
       <Card sx={{ minWidth: 275 }}>
         <CardContent className={CardContentStyle}>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <div>
+            <div className={CardContentAreaStyle}>
               <RHFTextInput name={'name'} control={control} />
 
               {errors.name?.message && (
@@ -87,16 +93,24 @@ export const EditForm = ({ id, data }: EditFormProps) => {
               )}
             </div>
 
-            <div>
-              <RHFSelect name={'city'} control={control} />
+            <div className={CardContentAreaStyle}>
+              <RHFSelect
+                name={'city'}
+                control={control}
+                selectValues={cityList}
+              />
 
               {errors.city?.message && (
                 <ErrorAlert errorMessage={errors.city.message} isShow={true} />
               )}
             </div>
 
-            <div>
-              <RHFRadio name={'favorite'} control={control} />
+            <div className={CardContentAreaStyle}>
+              <RHFRadio
+                name={'favorite'}
+                control={control}
+                selectValues={animalList}
+              />
 
               {errors.favorite?.message && (
                 <ErrorAlert
@@ -106,7 +120,7 @@ export const EditForm = ({ id, data }: EditFormProps) => {
               )}
             </div>
 
-            <div>
+            <div className={CardContentButtonStyle}>
               <SimpleButton
                 disabled={isLoading}
                 buttonName='Submit'
