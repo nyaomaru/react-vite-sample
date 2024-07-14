@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { axiosBase } from '@/plugins/axiosBase';
 import type { CustomerDetailSchema } from '@/routes/customer/-types/schema';
 
-import { PATH } from '@/constant/routes';
+import { PATH } from '@/constants/routes';
 
 export const useCustomerSubmit = (handleError: (message: string) => void) => {
   return useMutation({

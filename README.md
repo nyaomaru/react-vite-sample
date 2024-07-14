@@ -1,4 +1,4 @@
-# react_vite_sample
+# react-vite-sample
 
 Sandbox for below libraries with React & Vite
 
@@ -31,7 +31,7 @@ This project needs swagger api.
 Firstly, you clone below repository and run below command.
 
 ```sh
-git clone https://github.com/nyaomaru/react_vite_swagger
+git clone https://github.com/nyaomaru/react-vite-swagger
 npm start
 ```
 
@@ -48,6 +48,6 @@ You need to login, But the ID & Password is OK anything (minimum 3 characters)
 If you try to use GraphQL sample page that is `book`, you should run `graphql_sample` server.
 
 ```sh
-git clone https://github.com/nyaomaru/graphql_sample
+git clone https://github.com/nyaomaru/graphql-sample
 yarn && yarn start
 ```

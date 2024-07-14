@@ -6,7 +6,7 @@ import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { CustomerDetailQueries } from '@/queries/customer.queries';
 
-import { PATH } from '@/constant/routes';
+import { PATH } from '@/constants/routes';
 
 import { ButtonStyle } from '@/routes/customer/-components/Customer.css';
 import { DetailCard } from '@/routes/customer/-components/DetailCard';

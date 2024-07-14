@@ -4,9 +4,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 
-import { PATH } from '@/constant/routes';
-import { cityList } from '@/domain/city';
-import { animalList } from '@/domain/animal';
+import { PATH } from '@/constants/routes';
+import { cityList } from '@/domains/city';
+import { animalList } from '@/domains/animal';
 import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { useRegisterSubmit } from '@/hooks/useRegister';
 

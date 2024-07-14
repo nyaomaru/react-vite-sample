@@ -15,29 +15,26 @@ services:
       - |
         yarn install --immutable
         yarn dev
-    restart: always
     tty: true
     volumes:
       - type: bind
         source: .
         target: /app
     ports:
-      - '5173:5173'
+      - "5173:5173"
 
   swagger-server:
     build:
       context: .
       dockerfile: Dockerfile.swagger
     container_name: swagger-server
-    restart: always
     ports:
-      - '8080:8080'
+      - "8080:8080"
 
   graphql-server:
     build:
       context: .
       dockerfile: Dockerfile.graphql
     container_name: graphql-server
-    restart: always
     ports:
-      - '4000:4000'
+      - "4000:4000"

@@ -13,7 +13,7 @@ import { useLoginState, useLoginSubmit } from '@/hooks/useLogin';
 import { type LoginSchema, loginSchema } from '../-types/schema';
 import { ButtonStyle, TextFieldStyle } from './Login.css';
 
-import { PATH } from '@/constant/routes';
+import { PATH } from '@/constants/routes';
 import { register } from '@/routes/-functions/auth';
 
 export const Login = () => {

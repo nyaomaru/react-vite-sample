@@ -2,7 +2,7 @@ import { useAppSelector } from '@/app/hooks';
 import { useLocation, useNavigate } from '@tanstack/react-router';
 import { useEffect } from 'react';
 
-import { PATH } from '@/constant/routes';
+import { PATH } from '@/constants/routes';
 
 export const useAuthCheck = () => {
   const location = useLocation();
