@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { useAppSelector } from '@/app/hooks';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
-import { PATH } from '@/constant/routes';
+import { PATH } from '@/constants/routes';
 import { useAuthCheck } from '@/hooks/useAuthCheck';
 import { SimpleCard } from './SimpleCard';
 

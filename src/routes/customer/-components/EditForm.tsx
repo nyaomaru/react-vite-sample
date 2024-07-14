@@ -10,8 +10,8 @@ import {
   CardContentButtonStyle,
 } from './Customer.css';
 
-import { cityList } from '@/domain/city';
-import { animalList } from '@/domain/animal';
+import { cityList } from '@/domains/city';
+import { animalList } from '@/domains/animal';
 import { useCustomerSubmit } from '@/hooks/useCustomer';
 
 import { customerDetailSchema } from '../-types/schema';

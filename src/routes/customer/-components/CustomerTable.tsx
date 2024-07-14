@@ -15,7 +15,7 @@ import { ErrorAlert } from '@/components/atoms/ErrorAlert';
 import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { SuccessAlert } from '@/components/atoms/SuccessAlert';
 import { DeleteDialog } from '@/components/molecules/DeleteDialog';
-import { PATH } from '@/constant/routes';
+import { PATH } from '@/constants/routes';
 
 import type { CustomerListSchema } from '../-types/schema';
 

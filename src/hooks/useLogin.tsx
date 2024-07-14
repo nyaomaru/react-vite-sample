@@ -5,7 +5,7 @@ import { axiosBase } from '@/plugins/axiosBase';
 import { LoginQueries } from '@/queries/login.queries';
 import type { LoginSchema } from '@/routes/login/-types/schema';
 
-import { PATH } from '@/constant/routes';
+import { PATH } from '@/constants/routes';
 
 export const useLoginState = () => {
   const [state, setState] = useState('');

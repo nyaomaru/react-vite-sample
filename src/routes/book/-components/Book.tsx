@@ -7,7 +7,7 @@ import { SimpleButton } from '@/components/atoms/SimpleButton';
 import { ButtonStyle } from './Book.css';
 import { BookForm } from './BookForm';
 
-import { PATH } from '@/constant/routes';
+import { PATH } from '@/constants/routes';
 
 const GET_BOOK_TYPE = gql`
   query GetBookType {

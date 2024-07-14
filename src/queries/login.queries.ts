@@ -1,7 +1,7 @@
 import { axiosBase } from '@/plugins/axiosBase';
 import { createQueryKeys } from '@lukemorales/query-key-factory';
 
-import { PATH } from '@/constant/routes';
+import { PATH } from '@/constants/routes';
 
 export const LoginQueries = createQueryKeys('createQueryKeys', {
   getLoginState: () => ({
