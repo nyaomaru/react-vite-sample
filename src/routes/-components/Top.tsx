@@ -28,7 +28,7 @@ export const Top = () => {
         <p>count is {count}</p>
       </div>
 
-      <h2>Count up with radix</h2>
+      <h2>Count up with redux</h2>
       <SimpleCard minWidth={275} countStore={countStore} />
 
       <h2>Page</h2>
