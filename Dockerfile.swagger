@@ -1,11 +1,11 @@
-FROM node:20.12.0-bookworm
+FROM node:22.7
 LABEL maintainer="Nyaomaru<nyaonyao0725@gmail.com>"
 
 WORKDIR /app
 
 RUN git clone https://github.com/nyaomaru/react-vite-swagger . && \
-    npm install
+    pnpm install
 
 EXPOSE 8080
 
-CMD ["npm", "start"]
+CMD ["pnpm", "start"]

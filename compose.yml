@@ -13,8 +13,8 @@ services:
       - sh
       - -c
       - |
-        yarn install --immutable
-        yarn dev
+        pnpm install
+        pnpm dev
     tty: true
     volumes:
       - type: bind
