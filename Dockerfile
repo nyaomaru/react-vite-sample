@@ -1,13 +1,12 @@
-FROM node:20.12.0-bookworm
+FROM node:22.7
 LABEL maintainer="Nyaomaru<nyaonyao0725@gmail.com>"
 
-COPY package.json yarn.lock /app/
+COPY package.json pnpm-lock.yaml /app/
 
 WORKDIR /app
 
-COPY .yarn ./.yarn
-
 RUN corepack enable
-RUN yarn set version stable
 
-COPY . /app
+RUN pnpm install --frozen-lockfile
+
+COPY . .

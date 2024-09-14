@@ -11,6 +11,7 @@ Sandbox for below libraries with React & Vite
 - `@storybook/test-runner`
 - `Biome`
 - `@apollo/client`
+- `pnpm`
 
 ## 🚀 Get started
 
@@ -24,7 +25,7 @@ docker compose up -d
 
 Then, you can access to `http://localhost:5173/`.
 
-### 😺 Yarn
+### 😺 Pnpm
 
 This project needs swagger api.
 
@@ -32,13 +33,13 @@ Firstly, you clone below repository and run below command.
 
 ```sh
 git clone https://github.com/nyaomaru/react-vite-swagger
-npm start
+pnpm start
 ```
 
 After run API server, you run below command.
 
 ```sh
-yarn dev
+pnpm dev
 ```
 
 You need to login, But the ID & Password is OK anything (minimum 3 characters)
@@ -49,5 +50,5 @@ If you try to use GraphQL sample page that is `book`, you should run `graphql_sa
 
 ```sh
 git clone https://github.com/nyaomaru/graphql-sample
-yarn && yarn start
+pnpm && pnpm start
 ```

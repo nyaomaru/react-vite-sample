@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "vite --host",
     "build": "tsc && vite build",
     "lint": "biome lint --apply .",
@@ -66,6 +67,13 @@
     "vite-tsconfig-paths": "^4.3.2"
   },
   "eslintConfig": {
-    "extends": ["plugin:storybook/recommended"]
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  },
+  "packageManager": "pnpm@9.10.0",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
   }
 }
