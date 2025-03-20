@@ -7,13 +7,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    environment:
-      NODE_PATH: /tmp/node_modules
     command:
       - sh
       - -c
       - |
-        pnpm install
+        pnpm install --force
         pnpm dev
     tty: true
     volumes:
